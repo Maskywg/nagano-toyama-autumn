@@ -202,6 +202,26 @@
   .tag-food { background: #fef3e2; color: #9a5c00; border: 1px solid #f5d9a0; }
   .tag-souvenir { background: #f0edf8; color: #5a3a8a; border: 1px solid #cfc0e8; }
 
+  /* 班機時刻表 */
+  .flight-section { margin-top: 12px; border: 1px solid var(--primary-mid); border-radius: var(--radius-sm); overflow: hidden; }
+  .flight-header {
+    background: var(--primary); color: white; font-size: 11px; font-weight: 500; padding: 6px 12px;
+    letter-spacing: 0.05em; display: flex; align-items: center; gap: 6px;
+  }
+  .flight-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .flight-table th {
+    background: var(--primary-light); color: var(--primary); font-size: 10px; font-weight: 500; padding: 5px 10px;
+    text-align: left; letter-spacing: 0.04em; border-bottom: 1px solid var(--primary-mid);
+  }
+  .flight-table td { padding: 8px 10px; color: var(--text); border-bottom: 1px solid #f0f4f0; vertical-align: middle; }
+  .flight-table tr:last-child td { border-bottom: none; }
+  .flight-no { font-weight: 500; color: var(--primary); font-size: 13px; }
+  .flight-time { font-size: 15px; font-weight: 500; color: var(--text); letter-spacing: 0.02em; }
+  .flight-city { font-size: 10px; color: var(--muted); margin-top: 1px; }
+  .flight-arrow { color: var(--hint); font-size: 14px; padding: 0 4px; }
+  .flight-dur { font-size: 11px; color: var(--muted); background: var(--bg); padding: 2px 7px; border-radius: 10px; }
+  .flight-label { font-size: 10px; background: var(--primary); color: white; padding: 2px 6px; border-radius: 4px; white-space: nowrap; }
+
   /* 租車取還車區塊 */
   .car-section {
     margin-top: 12px; border: 1px solid #cfe0e8; border-radius: var(--radius-sm); overflow: hidden; background: var(--lake-light);
@@ -264,15 +284,9 @@
         建議鎖定 <b style="color:var(--text)">10月25日〜11月5日</b> 這個窗口：立山黑部走中低海拔段、上高地／戶隱剛過高峰但仍漂亮、松本城與善光寺開始進入見頃，雪猴不受季節影響全年都會泡湯。若想追立山室堂最極致的紅地毯畫面，要提前到9月底〜10月初，但代價是長野市區還是綠的，兩頭沒辦法同時吃到最高峰。
       </div>
 
-      <div class="section-title">班機現況・為什麼是8天7夜</div>
-      <div class="warn-box">
-        <b>台北－富山目前只有中華航空</b>，每週一、四各一班（CI170/171、CI370/371），且<b>只公布到 2026/10/24</b>，之後的冬季班表尚未公布。一週只有2個航班日，去回程日期只湊得出幾種組合：週一進週四出（4天3夜）、週四進週一出（5天4夜），或去程回程選同一個星期幾（8天7夜，整整一週）。之前查到「虎航也有飛富山」的資訊查證後是錯的，虎航目前查無這條航線。
-      </div>
-      <div style="font-size:12px;color:var(--muted);line-height:1.7;margin:10px 0 4px">
-        這個版本抓<b style="color:var(--text)">8天7夜</b>：去程與回程間隔剛好一整週（例如週一進、隔週一出，或週四進、隔週四出），跟目前的班表節奏對得上，也不用切換機場。多出來的天數把黑部峽谷鐵道、戶隱高原都加回來，步調更接近原本影片「不累、優雅」的調性。整套規劃仍然建立在華航會持續維持現有星期幾的假設上，冬季班表還沒公布，訂票前務必先到華航官網或客服確認實際班表。
-      </div>
-      <div class="warn-box" style="margin-top:10px">
-        <b>目前鎖定的目標日期：2026/10/29（四）～11/5（四）</b>，剛好7夜8天、也落在建議的賞楓窗口內。這兩天都是<b>星期四</b>，直接對上現有公布的 CI370/371 週四班次——雖然目前的班表只確定飛到10/24、這組日期仍落在冬季班表尚未公布的範圍，但如果華航維持同樣的星期幾節奏，這組日期會剛好吻合，訂票前還是要先確認冬季班表公布後的實際班次。
+      <div class="section-title">班機資訊（已確認訂票）</div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:4px">
+        <b style="color:var(--text)">2026/10/29（四）～11/5（四）</b>，7夜8天，機票已確認訂到。台北－富山原本只公布到10/24的班表，這組日期驗證了華航之後仍維持相同的<b style="color:var(--text)">週四</b>節奏（CI370/371），之前擔心冬季班表尚未公布的疑慮已經解除。之前查到「虎航也有飛富山」的資訊查證後是錯的，虎航目前查無這條航線，全程只靠這一組華航航班。
       </div>
     </div>
   </div>
@@ -440,7 +454,7 @@ fetchRates();
 
 <main id="app"></main>
 
-<footer>行程為自駕獨立規劃，非跟團行程・景點連結為 Google 地圖搜尋・地圖座標為概略位置僅供參考・富山－台北航班冬季班表尚未公布，出發前請務必查證</footer>
+<footer>行程為自駕獨立規劃，非跟團行程・景點連結為 Google 地圖搜尋・地圖座標為概略位置僅供參考・機票（CI370/CI371）已確認訂票，2026/10/29-11/5</footer>
 
 <script>
 function gmaps(q) {
@@ -450,16 +464,17 @@ function gmaps(q) {
 const days = [
   {
     n: 1, zh: "抵達富山・領車前往立山山麓", en: "Arrive Toyama → Tateyama foothills", country: "富山", flag: "🇯🇵",
-    spots: [
-      { n: "◎富岩運河環水公園（時間充裕可順路一遊）", type: "dot", links: [{ t: "📍 地圖", u: gmaps("富岩運河環水公園") }] },
-    ],
+    spots: [],
     mapSpots: [
       { name: "富山空港", lat: 36.6483, lon: 137.1876 },
-      { name: "富岩運河環水公園", lat: 36.7096, lon: 137.2136 },
+      { name: "立山方向", lat: 36.5763, lon: 137.4386 },
     ],
-    food: "抵達富山機場後直接領車，若時間允許可以到環水公園旁『世界最美星巴克』喝杯咖啡再上路；晚餐建議在立山山麓一帶找當地食堂，白蝦、鱒魚壽司都是富山名物",
+    food: "17:35抵達已經是傍晚，領車、開車到立山山麓時大概都入夜了，晚餐建議直接在當地找食堂解決，白蝦、鱒魚壽司都是富山名物，之後幾天遇到都可以吃",
     hotel: "立山山麓／大町溫泉鄉一帶（依實際訂房調整）",
-    note: "領車後直接開車往立山方向（約1小時車程），今天以移動和休息為主，把體力留到明天走立山黑部",
+    note: "17:35抵達富山空港，入境＋領車大約要到18:30以後才能出發，直接開車往立山方向（約1小時車程）。這天純粹是移動＋休息，時間上不夠再繞去市區景點，把體力留到明天走立山黑部",
+    flights: [
+      { label: "去程", airline: "中華航空", no: "CI370", from: "台北 TPE", to: "富山 TOY", dep: "13:45", arr: "17:35", duration: "2h50m" },
+    ],
     carEvent: { type: "pickup", label: "🚗 富山空港取車", location: "富山空港租車櫃檯", note: "取車後全程自駕到 Day 8 還車，中間立山黑部與上高地兩段車子都要停在管制區外" }
   },
   {
@@ -559,7 +574,10 @@ const days = [
     ],
     food: "回程路上可以在富山市區找點時間吃碗白蝦丼或鱒魚壽司當最後一餐",
     hotel: "溫暖的家",
-    note: "走安房峠道路／中部縱貫道回富山，車程約1.5-2小時，還車後記得預留機場報到時間。這8天7夜是配合華航目前只在週一、週四飛的班表節奏（去程回程選同一個星期幾），實際冬季班表尚未公布，訂票前務必先確認",
+    note: "走安房峠道路／中部縱貫道回富山，車程約1.5-2小時。回程班機18:35從富山起飛，國際線建議提前2小時報到，中午前從平湯溫泉出發最保險，路上還有餘裕在富山市區買伴手禮",
+    flights: [
+      { label: "回程", airline: "中華航空", no: "CI371", from: "富山 TOY", to: "台北 TPE", dep: "18:35", arr: "21:25", duration: "3h50m" },
+    ],
     carEvent: { type: "dropoff", label: "🚗 富山空港還車", location: "富山空港租車櫃檯", note: "還車後留意報到時間，確認當天實際航班日期與時刻" }
   },
 ];
@@ -648,6 +666,27 @@ function render() {
       </div>`;
     }
 
+    let flightHTML = '';
+    if (d.flights && d.flights.length) {
+      const rows = d.flights.map(f => `
+        <tr>
+          <td><span class="flight-label">${f.label}</span></td>
+          <td class="flight-no">${f.no}</td>
+          <td style="color:var(--muted);font-size:11px">${f.airline}</td>
+          <td><span class="flight-time">${f.dep}</span><div class="flight-city">${f.from}</div></td>
+          <td class="flight-arrow">→</td>
+          <td><span class="flight-time">${f.arr}</span><div class="flight-city">${f.to}</div></td>
+          <td><span class="flight-dur">⏱ ${f.duration}</span></td>
+        </tr>`).join('');
+      flightHTML = `<div class="flight-section">
+        <div class="flight-header">✈ 班機資訊</div>
+        <table class="flight-table">
+          <thead><tr><th>區段</th><th>班次</th><th>航空</th><th>出發</th><th></th><th>抵達</th><th>飛行時間</th></tr></thead>
+          <tbody>${rows}</tbody>
+        </table>
+      </div>`;
+    }
+
     return `<div class="day-card">
       <div class="day-header" onclick="tog(${i})">
         <span class="day-num">Day ${d.n}</span>
@@ -662,6 +701,7 @@ function render() {
       <div class="day-body" id="bd${i}">
         ${spotHTML}
         ${carHTML}
+        ${flightHTML}
         <div class="section">
           <div class="section-label">餐食建議</div>
           <div class="self-food-text">${d.food}</div>
