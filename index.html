@@ -1,0 +1,694 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>富山・長野 紅葉雪猴六日自駕</title>
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍁</text></svg>">
+<meta name="theme-color" content="#8a3220">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-polylinedecorator@1.6.0/dist/leaflet.polylineDecorator.js"></script>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=Noto+Sans+TC:wght@300;400;500&display=swap');
+
+  :root {
+    --bg: #f7f5f0;
+    --card: #ffffff;
+    --border: #e2ddd6;
+    --text: #1a1814;
+    --muted: #6b6560;
+    --hint: #a09890;
+    --primary: #8a3220;
+    --primary-light: #fbeee3;
+    --primary-mid: #e3b49c;
+    --lake: #1a5c7a;
+    --lake-light: #e8f2f6;
+    --star-bg: #fbeee3;
+    --star: #8a3220;
+    --onsen-bg: #e8f2f6;
+    --onsen: #1a5c7a;
+    --radius: 12px;
+    --radius-sm: 8px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans TC', sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    min-height: 100vh;
+  }
+
+  header {
+    background: var(--primary);
+    color: white;
+    padding: 2.5rem 1.5rem 2rem;
+    text-align: center;
+  }
+
+  header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(1.4rem, 4vw, 2rem);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.4rem;
+  }
+
+  header p {
+    font-size: 0.85rem;
+    opacity: 0.8;
+    letter-spacing: 0.06em;
+  }
+
+  .legend {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 1rem 1.5rem;
+    background: white;
+    border-bottom: 1px solid var(--border);
+    font-size: 12px;
+    color: var(--muted);
+  }
+
+  .legend-item { display: flex; align-items: center; gap: 5px; }
+
+  .badge {
+    font-size: 11px;
+    font-weight: 500;
+    padding: 2px 8px;
+    border-radius: 20px;
+    white-space: nowrap;
+    display: inline-block;
+  }
+  .badge.star { background: var(--star-bg); color: var(--star); }
+  .badge.dot { background: #f0ede8; color: var(--muted); }
+  .badge.onsen { background: var(--onsen-bg); color: var(--onsen); }
+
+  main { max-width: 800px; margin: 0 auto; padding: 1.5rem 1rem 3rem; }
+
+  /* 資訊卡 */
+  .info-card {
+    max-width: 800px; margin: 1.2rem auto 0; padding: 0 1rem;
+  }
+  .info-card .inner {
+    background: #fff; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden;
+  }
+  .info-head {
+    background: var(--primary); padding: 12px 16px; display: flex; align-items: center; justify-content: space-between; cursor: pointer;
+  }
+  .info-head-title { color: white; font-size: 14px; font-weight: 500; }
+  .info-head-sub { color: rgba(255,255,255,0.7); font-size: 11px; margin-top: 2px; }
+  .info-chevron { color: rgba(255,255,255,0.75); font-size: 12px; transition: transform .25s; }
+  .info-body { display: none; padding: 14px 16px; }
+  .info-body.open { display: block; }
+  .info-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap: 10px; margin-bottom: 14px; }
+  .info-tile { background: var(--primary-light); border-radius: var(--radius-sm); padding: 10px 12px; }
+  .info-tile .k { font-size: 10px; color: var(--primary); letter-spacing: 0.06em; margin-bottom: 3px; }
+  .info-tile .v { font-size: 13px; color: var(--text); font-weight: 500; line-height: 1.5; }
+  .feature-list { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
+  .feature-item { display: flex; gap: 8px; font-size: 12px; color: var(--muted); line-height: 1.6; }
+  .feature-item b { color: var(--text); }
+  .section-title { font-size: 11px; font-weight: 500; color: var(--hint); letter-spacing: 0.08em; text-transform: uppercase; margin: 14px 0 6px; }
+  .section-title:first-child { margin-top: 0; }
+  .warn-box { font-size: 12px; color: #8a5a1a; line-height: 1.7; background: #fdf3e0; border: 1px solid #f0dba8; border-radius: var(--radius-sm); padding: 10px 12px; margin-top: 10px; }
+  .warn-box b { color: #6b4210; }
+
+  .day-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 10px;
+    overflow: hidden;
+    transition: box-shadow 0.2s;
+  }
+  .day-card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.07); }
+
+  .day-header {
+    display: flex; align-items: center; gap: 10px;
+    padding: 13px 16px; cursor: pointer; user-select: none; transition: background 0.15s;
+  }
+  .day-header:hover { background: #faf8f5; }
+
+  .day-num {
+    background: var(--primary-light); color: var(--primary); border-radius: var(--radius-sm);
+    font-size: 11px; font-weight: 500; padding: 3px 8px; white-space: nowrap; min-width: 46px;
+    text-align: center; flex-shrink: 0;
+  }
+
+  .flag { font-size: 14px; flex-shrink: 0; }
+  .day-title-wrap { flex: 1; min-width: 0; }
+  .day-zh { font-size: 14px; font-weight: 500; color: var(--text); line-height: 1.3; }
+  .day-en { font-size: 11px; color: var(--hint); margin-top: 1px; }
+  .day-country { font-size: 11px; color: var(--muted); white-space: nowrap; flex-shrink: 0; }
+  .chevron { font-size: 10px; color: var(--hint); transition: transform 0.25s; flex-shrink: 0; }
+  .chevron.open { transform: rotate(90deg); }
+
+  .day-body { display: none; padding: 0 16px 14px; border-top: 1px solid var(--border); }
+  .day-body.open { display: block; }
+
+  .section { margin-top: 12px; }
+  .section-label {
+    font-size: 10px; font-weight: 500; color: var(--hint); letter-spacing: 0.08em;
+    text-transform: uppercase; margin-bottom: 7px;
+  }
+
+  .spots { display: flex; flex-direction: column; gap: 8px; }
+  .spot-item { display: flex; flex-direction: column; gap: 4px; }
+  .spot-tag { font-size: 12px; padding: 4px 10px; border-radius: 20px; display: inline-block; line-height: 1.5; max-width: fit-content; }
+  .spot-tag.star { background: var(--star-bg); color: var(--star); }
+  .spot-tag.onsen { background: var(--onsen-bg); color: var(--onsen); }
+  .spot-tag.dot { background: #f0ede8; color: var(--text); border: 1px solid var(--border); }
+
+  .link-row { display: flex; gap: 5px; flex-wrap: wrap; padding-left: 4px; }
+  .link-btn {
+    font-size: 11px; padding: 2px 9px; border-radius: 20px; text-decoration: none;
+    border: 1px solid var(--border); color: var(--muted); background: white; transition: all 0.15s;
+  }
+  .link-btn:hover { background: var(--bg); color: var(--text); border-color: var(--hint); }
+  .link-btn.official { background: var(--primary-light); color: var(--primary); border-color: var(--primary-mid); }
+  .link-btn.official:hover { background: var(--primary-mid); }
+
+  .self-food-text { font-size: 12px; color: var(--muted); line-height: 1.6; background: var(--lake-light); border-radius: var(--radius-sm); padding: 7px 10px; }
+
+  .hotel { font-size: 12px; color: var(--muted); margin-top: 4px; }
+
+  .note {
+    font-size: 12px; color: var(--muted); margin-top: 10px; padding: 8px 11px;
+    background: #faf8f5; border-radius: var(--radius-sm); border-left: 3px solid var(--primary-mid); line-height: 1.6;
+  }
+
+  .day-map { height: 260px; border-radius: 8px; margin-top: 10px; border: 1px solid var(--border); }
+
+  footer { text-align: center; padding: 2rem; font-size: 12px; color: var(--hint); }
+
+  /* 特產區塊 */
+  .shopping-section {
+    margin-top: 12px; background: #fffdf7; border: 1px solid #e8dfc8; border-radius: var(--radius-sm); padding: 10px 12px;
+  }
+  .shopping-title {
+    font-size: 11px; font-weight: 500; color: #8a6c2a; letter-spacing: 0.06em; text-transform: uppercase;
+    margin-bottom: 8px; display: flex; align-items: center; gap: 5px;
+  }
+  .shopping-grid { display: flex; flex-direction: column; gap: 6px; }
+  .shopping-item { display: flex; flex-direction: column; gap: 2px; }
+  .shopping-name { font-size: 12px; font-weight: 500; color: var(--text); }
+  .shopping-desc { font-size: 11px; color: var(--muted); line-height: 1.5; }
+  .shopping-tag { display: inline-block; font-size: 10px; padding: 1px 6px; border-radius: 10px; margin-right: 3px; margin-bottom: 2px; }
+  .tag-food { background: #fef3e2; color: #9a5c00; border: 1px solid #f5d9a0; }
+  .tag-souvenir { background: #f0edf8; color: #5a3a8a; border: 1px solid #cfc0e8; }
+
+  /* 租車取還車區塊 */
+  .car-section {
+    margin-top: 12px; border: 1px solid #cfe0e8; border-radius: var(--radius-sm); overflow: hidden; background: var(--lake-light);
+  }
+  .car-header {
+    background: var(--lake); color: white; font-size: 11px; font-weight: 500; padding: 6px 12px;
+    letter-spacing: 0.05em; display: flex; align-items: center; gap: 6px;
+  }
+  .car-body { padding: 10px 12px; font-size: 12px; color: var(--text); line-height: 1.7; }
+  .car-body b { color: var(--lake); }
+
+  .drive-tile { background: var(--lake-light); border-radius: var(--radius-sm); padding: 10px 12px; }
+  .drive-tile .k { font-size: 10px; color: var(--lake); letter-spacing: 0.06em; margin-bottom: 3px; }
+  .drive-tile .v { font-size: 13px; color: var(--text); font-weight: 500; line-height: 1.5; }
+  .rental-chip {
+    font-size: 11px; background: white; color: var(--lake); border: 1px solid #cfe0e8; border-radius: 20px;
+    padding: 4px 11px; text-decoration: none; display: inline-block;
+  }
+  .rental-chip:hover { background: var(--lake-light); }
+  .tip-list { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
+  .tip-item { display: flex; gap: 8px; font-size: 12px; color: var(--muted); line-height: 1.6; }
+  .tip-item b { color: var(--text); }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>富山・長野 紅葉雪猴六日自駕</h1>
+  <p>立山黑部纜車賞楓・地獄谷雪猴泡湯・上高地木道健行・富山進富山出</p>
+</header>
+
+<div class="legend">
+  <div class="legend-item"><span class="badge star">★ 必訪</span> 重點景點</div>
+  <div class="legend-item"><span class="badge dot">◎ 參觀</span> 順路 / 沿途風光</div>
+  <div class="legend-item"><span class="badge onsen">♨ 溫泉</span> 泡湯 / 雪猴相關</div>
+  <div class="legend-item" style="border-left:1px solid #e2ddd6;padding-left:12px;color:var(--lake)">🚗 全程自駕，非跟團行程</div>
+</div>
+
+<!-- 賞楓時機・班機現況 -->
+<div class="info-card">
+  <div class="inner">
+    <div class="info-head" onclick="var b=document.getElementById('infob');var c=document.getElementById('infoc');b.classList.toggle('open');c.style.transform=b.classList.contains('open')?'rotate(90deg)':''">
+      <div>
+        <div class="info-head-title">🍁 賞楓時機・班機現況・出發前必看</div>
+        <div class="info-head-sub">富山到長野海拔落差大，見頃時間差近一個半月</div>
+      </div>
+      <span class="info-chevron" id="infoc">▶</span>
+    </div>
+    <div class="info-body" id="infob">
+      <div class="section-title">各點紅葉見頃參考（往年平均）</div>
+      <div class="info-grid">
+        <div class="info-tile"><div class="k">立山室堂（2450m）</div><div class="v">9月下旬〜10月上旬・全行程最早</div></div>
+        <div class="info-tile"><div class="k">上高地・戶隱（1200〜1500m）</div><div class="v">10月中旬〜下旬</div></div>
+        <div class="info-tile"><div class="k">立山美女平・大觀峰・黑部湖</div><div class="v">10月下旬〜11月上旬</div></div>
+        <div class="info-tile"><div class="k">地獄谷・志賀高原一帶（850m）</div><div class="v">10月中旬〜下旬</div></div>
+        <div class="info-tile"><div class="k">松本城（600m）</div><div class="v">10月底〜11月中，10/31-11/13最盛</div></div>
+        <div class="info-tile"><div class="k">善光寺・長野市區（400m）</div><div class="v">10月下旬〜11月上旬</div></div>
+      </div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:4px">
+        建議鎖定 <b style="color:var(--text)">10月25日〜11月5日</b> 這個窗口：立山黑部走中低海拔段、上高地／戶隱剛過高峰但仍漂亮、松本城與善光寺開始進入見頃，雪猴不受季節影響全年都會泡湯。若想追立山室堂最極致的紅地毯畫面，要提前到9月底〜10月初，但代價是長野市區還是綠的，兩頭沒辦法同時吃到最高峰。
+      </div>
+
+      <div class="section-title">富山直飛班機現況</div>
+      <div class="warn-box">
+        <b>目前只有中華航空飛台北－富山</b>，每週一、四各一班（CI170/171、CI370/371），但<b>只公布到 2026/10/24</b>。這個窗口之後（也就是這趟賞楓行程真正會出發的時間）冬季班表尚未公布，機位與班次都可能調整。之前查到「虎航也有飛」的資訊查證後是錯的，虎航目前查無這條航線。訂票前務必先到華航官網或客服確認實際班表，並考慮<b>小松機場</b>（石川縣，離富山約1小時車程）當備案進出點。
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 自駕租車攻略 -->
+<div class="info-card">
+  <div class="inner">
+    <div class="info-head" style="background:var(--lake)" onclick="var b=document.getElementById('driveb');var c=document.getElementById('drivec');b.classList.toggle('open');c.style.transform=b.classList.contains('open')?'rotate(90deg)':''">
+      <div>
+        <div class="info-head-title">🚗 自駕租車攻略</div>
+        <div class="info-head-sub">富山進富山出・立山黑部與上高地都禁止私家車進入</div>
+      </div>
+      <span class="info-chevron" id="drivec">▶</span>
+    </div>
+    <div class="info-body" id="driveb">
+      <div class="section-title">停車重點</div>
+      <div class="info-grid">
+        <div class="drive-tile"><div class="k">⛰ 立山黑部入口</div><div class="v">車停立山駅停車場，纜車＋高原巴士原路搭回取車，車不能開進阿爾卑斯路線</div></div>
+        <div class="drive-tile"><div class="k">🥾 上高地入口</div><div class="v">車停あかんだな駐車場（平湯溫泉旁），轉接駁巴士入園約25分鐘</div></div>
+      </div>
+
+      <div class="section-title">建議租車公司（點擊為 Google 搜尋，非固定連結）</div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:4px">
+        <a class="rental-chip" href="https://www.google.com/search?q=Toyota+Rent+a+Car+富山空港" target="_blank">Toyota Rent a Car ↗</a>
+        <a class="rental-chip" href="https://www.google.com/search?q=Nippon+Rent-A-Car+富山空港" target="_blank">日本駅前 Nippon Rent-A-Car ↗</a>
+        <a class="rental-chip" href="https://www.google.com/search?q=Times+Car+Rental+富山空港" target="_blank">Times Car ↗</a>
+        <a class="rental-chip" href="https://www.google.com/search?q=Orix+Rent-A-Car+富山空港" target="_blank">Orix Rent-A-Car ↗</a>
+        <a class="rental-chip" href="https://www.google.com/search?q=Nissan+Rent-A-Car+富山空港" target="_blank">Nissan Rent-A-Car ↗</a>
+      </div>
+      <div style="font-size:11px;color:var(--hint);line-height:1.6;margin-bottom:12px">富山空港內或周邊都有櫃檯，賞楓旺季建議提早1-2個月訂車，車型盡量選小型車，山區道路較窄。</div>
+
+      <div class="section-title">開車注意事項</div>
+      <div class="tip-list">
+        <div class="tip-item">🛣 <span><b>日本靠左行駛</b>，跟台灣方向相反，上路前先熟悉方向燈／雨刷位置左右相反</span></div>
+        <div class="tip-item">🪪 <span>台灣駕照在日本不能直接用，要準備<b>駕照的日文譯本</b>（監理站申請，或抵達日本後在部分租車公司／JAF現場辦理），不是一般國際駕照</span></div>
+        <div class="tip-item">🏔 <span>安房峠道路（上高地往平湯方向）11月初山區<b>偶有早雪</b>，上路前先查詢當日路況與胎況建議</span></div>
+        <div class="tip-item">🛡 <span>租車保險的自負額 excess 建議加保降低，山路彎多，事故處理起來比較安心</span></div>
+        <div class="tip-item">📡 <span>富山到長野之間穿越多個山區隧道，<b>手機導航偶爾會斷訊</b>，建議先截圖或下載離線地圖備用</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 即時匯率區塊 -->
+<div style="max-width:800px;margin:0.8rem auto 0;padding:0 1rem">
+  <div id="rate-card" style="background:#fff;border:1px solid #e2ddd6;border-radius:12px;overflow:hidden">
+    <div style="background:#8a3220;padding:12px 16px;display:flex;align-items:center;justify-content:space-between">
+      <div style="color:white;font-size:14px;font-weight:500">💱 日圓 JPY × 台幣即時匯率</div>
+      <button onclick="fetchRates()" id="refresh-btn"
+        style="background:rgba(255,255,255,0.15);color:white;border:1px solid rgba(255,255,255,0.3);border-radius:20px;font-size:11px;padding:4px 12px;cursor:pointer">
+        ↻ 更新匯率
+      </button>
+    </div>
+    <div id="rate-body" style="padding:12px 16px">
+      <div style="color:#a09890;font-size:12px;text-align:center;padding:8px">載入中...</div>
+    </div>
+    <div id="rate-footer" style="padding:6px 16px 10px;font-size:10px;color:#a09890;border-top:1px solid #f0ede8"></div>
+  </div>
+</div>
+
+<script>
+const QUICK_AMOUNTS = [1000, 3000, 5000, 10000, 30000, 50000];
+
+async function fetchRates() {
+  const btn = document.getElementById('refresh-btn');
+  const body = document.getElementById('rate-body');
+  const footer = document.getElementById('rate-footer');
+  btn.textContent = '載入中...';
+  btn.disabled = true;
+
+  try {
+    let rate = null; // 1 TWD = ? JPY
+
+    try {
+      const r = await fetch('https://api.frankfurter.app/latest?from=TWD&to=JPY');
+      if (r.ok) { const d = await r.json(); rate = d.rates.JPY; }
+    } catch(e) {}
+
+    if (!rate) {
+      try {
+        const r = await fetch('https://latest.currency-api.pages.dev/v1/currencies/twd.json');
+        if (r.ok) { const d = await r.json(); rate = d.twd.jpy; }
+      } catch(e) {}
+    }
+
+    if (!rate) {
+      try {
+        const r = await fetch('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/twd.json');
+        if (r.ok) { const d = await r.json(); rate = d.twd.jpy; }
+      } catch(e) {}
+    }
+
+    if (!rate) throw new Error('無法取得匯率');
+
+    const ratePerForeign = 1 / rate; // 1 JPY = ? TWD
+    const ratePerTWD100 = (100 * rate).toFixed(1);
+
+    const quickRows = QUICK_AMOUNTS.map(amt => {
+      const twd = (amt * ratePerForeign).toFixed(0);
+      return `<div style="display:flex;justify-content:space-between;padding:3px 0;border-bottom:1px solid #f5f3ef">
+        <span style="color:#6b6560">¥${amt.toLocaleString()}</span>
+        <span style="font-weight:500;color:#1a1814">≈ NT$ ${Number(twd).toLocaleString()}</span>
+      </div>`;
+    }).join('');
+
+    let html = `
+      <div style="border:1px solid #e8e4de;border-radius:8px;overflow:hidden">
+        <div style="background:#8a3220;padding:8px 12px;display:flex;align-items:center;justify-content:space-between">
+          <div style="display:flex;align-items:center;gap:8px">
+            <span style="font-size:18px">🇯🇵</span>
+            <div>
+              <div style="color:white;font-size:13px;font-weight:500">日圓 (JPY)</div>
+              <div style="color:rgba(255,255,255,0.7);font-size:10px">全程使用</div>
+            </div>
+          </div>
+          <div style="text-align:right">
+            <div style="color:white;font-size:18px;font-weight:600">NT$ ${ratePerTWD100}</div>
+            <div style="color:rgba(255,255,255,0.7);font-size:10px">= ¥100</div>
+          </div>
+        </div>
+        <div style="padding:8px 12px;background:#fafaf8">
+          <div style="font-size:10px;color:#a09890;margin-bottom:5px;letter-spacing:0.04em">快速換算</div>
+          ${quickRows}
+        </div>
+        <div style="padding:6px 12px 8px">
+          <div style="font-size:10px;color:#a09890;margin-bottom:4px">自訂金額</div>
+          <div style="display:flex;gap:6px;align-items:center">
+            <span style="color:#6b6560;font-size:12px">¥</span>
+            <input type="number" placeholder="輸入JPY金額" oninput="calcTWD(this, ${ratePerForeign})"
+              style="flex:1;border:1px solid #ddd;border-radius:6px;padding:5px 8px;font-size:12px;outline:none;min-width:0">
+            <span style="color:#a09890;font-size:12px">=</span>
+            <span class="twd-result" style="color:#8a3220;font-weight:500;font-size:13px;min-width:60px;text-align:right">NT$ —</span>
+          </div>
+        </div>
+      </div>`;
+
+    body.innerHTML = html;
+
+    const now = new Date();
+    footer.textContent = `匯率更新時間：${now.toLocaleDateString('zh-TW')} ${now.toLocaleTimeString('zh-TW')} ・資料來源：Frankfurter API（歐洲央行）`;
+    btn.textContent = '↻ 更新匯率';
+    btn.disabled = false;
+
+  } catch(e) {
+    body.innerHTML = '<div style="color:#c0392b;font-size:12px;text-align:center;padding:12px">匯率載入失敗，請檢查網路連線後重試。</div>';
+    btn.textContent = '↻ 重試';
+    btn.disabled = false;
+  }
+}
+
+function calcTWD(input, rate) {
+  const val = parseFloat(input.value);
+  const el = document.querySelector('.twd-result');
+  if (!el) return;
+  if (isNaN(val) || input.value === '') {
+    el.textContent = 'NT$ —';
+  } else {
+    el.textContent = 'NT$ ' + (val * rate).toFixed(0).replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  }
+}
+
+fetchRates();
+</script>
+
+<main id="app"></main>
+
+<footer>行程為自駕獨立規劃，非跟團行程・景點連結為 Google 地圖搜尋・地圖座標為概略位置僅供參考・富山－台北航班冬季班表尚未公布，出發前請務必查證</footer>
+
+<script>
+function gmaps(q) {
+  return 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(q);
+}
+
+const days = [
+  {
+    n: 1, zh: "抵達富山・領車前往立山山麓", en: "Arrive Toyama → Tateyama foothills", country: "富山", flag: "🇯🇵",
+    spots: [
+      { n: "◎富岩運河環水公園（時間充裕可順路一遊）", type: "dot", links: [{ t: "📍 地圖", u: gmaps("富岩運河環水公園") }] },
+    ],
+    mapSpots: [
+      { name: "富山空港", lat: 36.6483, lon: 137.1876 },
+      { name: "富岩運河環水公園", lat: 36.7096, lon: 137.2136 },
+    ],
+    food: "抵達富山機場後直接領車，若時間允許可以到環水公園旁『世界最美星巴克』喝杯咖啡再上路；晚餐建議在立山山麓一帶找當地食堂，白蝦、鱒魚壽司都是富山名物",
+    hotel: "立山山麓／大町溫泉鄉一帶（依實際訂房調整）",
+    note: "領車後直接開車往立山方向（約1小時車程），今天以移動和休息為主，把體力留到明天走立山黑部",
+    carEvent: { type: "pickup", label: "🚗 富山空港取車", location: "富山空港租車櫃檯", note: "取車後全程自駕到 Day 6 還車，中間立山黑部與上高地兩段車子都要停在管制區外" }
+  },
+  {
+    n: 2, zh: "立山黑部纜車賞楓 → 移動長野", en: "Tateyama Kurobe Alpine Route → Nagano side", country: "富山", flag: "🇯🇵",
+    spots: [
+      { n: "★立山黑部阿爾卑斯路線（纜車＋高原巴士）", type: "star", links: [{ t: "官網", u: "https://www.alpen-route.com/tw/", o: true }, { t: "📍 地圖", u: gmaps("立山駅") }] },
+      { n: "◎彌陀ヶ原・天狗平（此時節見頃在中低海拔段）", type: "dot", links: [{ t: "📍 地圖", u: gmaps("彌陀ヶ原") }] },
+      { n: "◎大觀峰・黑部湖（體力足夠可延伸）", type: "dot", links: [{ t: "📍 地圖", u: gmaps("黑部湖") }] },
+    ],
+    mapSpots: [
+      { name: "立山駅", lat: 36.5763, lon: 137.4386 },
+      { name: "美女平", lat: 36.5910, lon: 137.4540 },
+      { name: "彌陀ヶ原", lat: 36.5730, lon: 137.5540 },
+      { name: "大觀峰", lat: 36.5690, lon: 137.6190 },
+    ],
+    food: "立山駅、美女平、室堂都有簡餐和伴手禮店，山上餐點選擇不多，建議先在山下超商準備一些行動糧",
+    hotel: "湯田中溫泉（地獄谷野猿公苑附近，當晚就能先泡湯）",
+    note: "私家車開不進阿爾卑斯路線，車子整天停在立山駅停車場，纜車＋巴士原路搭回取車後再開車往長野方向（約2.5小時）。視腳程調整走到彌陀ヶ原就好，或體力夠延伸到大觀峰、黑部湖"
+  },
+  {
+    n: 3, zh: "地獄谷雪猴泡湯 → 善光寺散步", en: "Jigokudani snow monkeys → Zenkoji Temple", country: "長野", flag: "🇯🇵",
+    spots: [
+      { n: "★地獄谷野猿公苑（野生獼猴泡溫泉）", type: "star", links: [{ t: "官網", u: "https://jigokudani-yaenkoen.co.jp/", o: true }, { t: "📍 地圖", u: gmaps("地獄谷野猿公苑") }] },
+      { n: "★善光寺（信州第一名刹）", type: "star", links: [{ t: "📍 地圖", u: gmaps("善光寺") }] },
+      { n: "♨湯田中溫泉街（順路可再泡一次）", type: "onsen", links: [{ t: "📍 地圖", u: gmaps("湯田中溫泉") }] },
+    ],
+    mapSpots: [
+      { name: "地獄谷野猿公苑入口", lat: 36.7318, lon: 138.4614 },
+      { name: "善光寺", lat: 36.6605, lon: 138.1864 },
+    ],
+    food: "信州蕎麥麵、烤餡餅（おやき）是長野招牌，善光寺參道周邊老店選擇多",
+    hotel: "松本市區",
+    note: "猴子上午活動力最好，建議8-9點就到停車場，從入口徒步約30-40分鐘進猴園；下午移動到長野市區逛善光寺，再開車約1小時到松本。時間充裕可以加走小布施（藝術小鎮）"
+  },
+  {
+    n: 4, zh: "松本城慢遊", en: "Matsumoto Castle", country: "長野", flag: "🇯🇵",
+    spots: [
+      { n: "★松本城（現存天守，日本國寶）", type: "star", links: [{ t: "官網", u: "https://www.matsumoto-castle.jp/", o: true }, { t: "📍 地圖", u: gmaps("松本城") }] },
+      { n: "◎城下町散步（縄手通り・中町通り）", type: "dot", links: [{ t: "📍 地圖", u: gmaps("縄手通り 松本") }] },
+    ],
+    mapSpots: [
+      { name: "松本城", lat: 36.2385, lon: 137.9683 },
+    ],
+    food: "城下町裡老蕎麥麵店、咖啡老屋很多，馬肉料理也是松本在地特色",
+    hotel: "松本市區（連住，隔天上高地當天來回）",
+    note: "不爬陡梯的減法慢遊路線，天守內部階梯較陡，體力有限可以只在外觀護城河邊散步拍照"
+  },
+  {
+    n: 5, zh: "上高地賞楓健行", en: "Kamikochi autumn hike", country: "長野", flag: "🇯🇵",
+    spots: [
+      { n: "★大正池・田代濕原木道（穗高連峰倒影，最推薦段落）", type: "star", links: [{ t: "📍 地圖", u: gmaps("大正池") }] },
+      { n: "★河童橋（上高地地標）", type: "star", links: [{ t: "📍 地圖", u: gmaps("河童橋") }] },
+      { n: "◎明神池（體力足夠可延伸）", type: "dot", links: [{ t: "📍 地圖", u: gmaps("明神池") }] },
+    ],
+    mapSpots: [
+      { name: "あかんだな駐車場", lat: 36.2074, lon: 137.5893 },
+      { name: "大正池", lat: 36.2436, lon: 137.6187 },
+      { name: "河童橋", lat: 36.2500, lon: 137.6363 },
+    ],
+    food: "河童橋周邊有山屋餐廳和輕食攤，建議早點出發避開接駁巴士排隊人潮",
+    hotel: "平湯溫泉（順路移動，縮短隔天回富山的車程）",
+    note: "私家車開不進上高地，車直接停到あかんだな駐車場（在平湯溫泉附近），轉接駁巴士入園約25分鐘。建議先搭到大正池站，沿木道走到河童橋（約80分鐘、全程平坦），有餘力再往明神池方向延伸"
+  },
+  {
+    n: 6, zh: "平湯溫泉 → 返回富山搭機", en: "Hirayu Onsen → Toyama → depart", country: "返程", flag: "🇯🇵→🇹🇼",
+    spots: [],
+    mapSpots: [
+      { name: "平湯溫泉", lat: 36.1978, lon: 137.5766 },
+      { name: "富山空港", lat: 36.6483, lon: 137.1876 },
+    ],
+    food: "回程路上可以在富山市區找點時間吃碗白蝦丼或鱒魚壽司當最後一餐",
+    hotel: "溫暖的家",
+    note: "走安房峠道路／中部縱貫道回富山，車程約1.5-2小時，還車後記得預留機場報到時間。富山－台北航線冬季班表尚未公布，訂票前務必先確認實際航班日",
+    carEvent: { type: "dropoff", label: "🚗 富山空港還車", location: "富山空港租車櫃檯", note: "還車後留意報到時間，確認當天實際航班日期與時刻" }
+  },
+];
+
+const dayShoppingMap = {
+  2: [
+    { name: "立山黑部限定商品", tag: "souvenir", desc: "纜車／高原巴士造型餅乾、御守等，立山駅與室堂的商店都有賣", links: [] },
+  ],
+  3: [
+    { name: "信州味噌・七味唐辛子", tag: "food", desc: "善光寺仲見世通「八幡屋礒五郎」是七味的老字號名店", links: [] },
+    { name: "信州蘋果製品", tag: "food", desc: "長野是日本知名蘋果產地，蘋果汁、蘋果派都值得帶", links: [] },
+  ],
+  4: [
+    { name: "松本民藝家具・工藝品", tag: "souvenir", desc: "中町通り一帶老屋改建的工藝品店，木工與漆器選擇多", links: [] },
+    { name: "手打ち蕎麥乾麵", tag: "food", desc: "城下町蕎麥麵店多有販售乾麵伴手禮版本", links: [] },
+  ],
+  6: [
+    { name: "鱒魚壽司（ますのすし）", tag: "food", desc: "富山車站便當名物，壓製而成、可常溫保存，很適合當最後一餐或伴手禮", links: [] },
+    { name: "白蝦相關伴手禮", tag: "food", desc: "白蝦仙貝、白蝦昆布卷等富山灣名產，車站土產店都買得到", links: [] },
+  ],
+};
+
+function renderHotel(hotelStr) {
+  if (!hotelStr || hotelStr.includes('機上') || hotelStr === '溫暖的家' || hotelStr === '—') {
+    return `<span style="color:var(--muted)">${hotelStr}</span>`;
+  }
+  const parts = hotelStr.split('／');
+  return parts.map(part => {
+    part = part.trim();
+    const cleanName = part.replace(/\s*或同級\s*$/, '').replace(/（依實際訂房調整）/, '');
+    return `<a href="${gmaps(cleanName)}" target="_blank" style="color:var(--primary);text-decoration:none;font-size:12px;display:inline-flex;align-items:center;gap:3px">${part}<span style="font-size:10px;opacity:0.7">↗</span></a>`;
+  }).join('<span style="color:var(--hint);margin:0 4px">／</span>');
+}
+
+function render() {
+  const app = document.getElementById('app');
+  app.innerHTML = days.map((d, i) => {
+    let spotHTML = '';
+    if (d.spots && d.spots.length) {
+      const items = d.spots.map(s => {
+        const cls = `spot-tag ${s.type}`;
+        const linksHTML = (s.links && s.links.length)
+          ? `<div class="link-row">${s.links.map(l =>
+              `<a class="link-btn${l.o ? ' official' : ''}" href="${l.u}" target="_blank">${l.t} ↗</a>`
+            ).join('')}</div>`
+          : '';
+        return `<div class="spot-item"><span class="${cls}">${s.n}</span>${linksHTML}</div>`;
+      }).join('');
+      const mapDiv = d.mapSpots && d.mapSpots.length
+        ? `<div class="day-map" id="map-day${d.n}"></div>`
+        : '';
+      spotHTML = `<div class="section"><div class="section-label">景點 &amp; 連結</div><div class="spots">${items}</div>${mapDiv}</div>`;
+    } else if (d.mapSpots && d.mapSpots.length) {
+      spotHTML = `<div class="section"><div class="section-label">路線</div><div class="day-map" id="map-day${d.n}"></div></div>`;
+    }
+
+    const noteHTML = d.note ? `<div class="note">${d.note}</div>` : '';
+
+    let shopHTML = '';
+    const shopItems = dayShoppingMap[d.n];
+    if (shopItems && shopItems.length) {
+      const items = shopItems.map(s => `
+        <div class="shopping-item">
+          <div class="shopping-name"><span class="shopping-tag tag-${s.tag}">${{food:'食',souvenir:'紀念'}[s.tag]}</span>${s.name}</div>
+          <div class="shopping-desc">${s.desc}</div>
+          ${s.links && s.links.length ? `<div class="link-row">${s.links.map(l => `<a class="link-btn${l.o ? ' official' : ''}" href="${l.u}" target="_blank">${l.t} ↗</a>`).join('')}</div>` : ''}
+        </div>`).join('');
+      shopHTML = `<div class="shopping-section">
+        <div class="shopping-title">🛒 當地特產 &amp; 購物推薦</div>
+        <div class="shopping-grid">${items}</div>
+      </div>`;
+    }
+
+    let carHTML = '';
+    if (d.carEvent) {
+      const ce = d.carEvent;
+      carHTML = `<div class="car-section">
+        <div class="car-header">${ce.label}</div>
+        <div class="car-body"><b>${ce.type === 'pickup' ? '取車地點' : '還車地點'}：</b>${ce.location}<br>${ce.note}</div>
+      </div>`;
+    }
+
+    return `<div class="day-card">
+      <div class="day-header" onclick="tog(${i})">
+        <span class="day-num">Day ${d.n}</span>
+        <span class="flag">${d.flag}</span>
+        <div class="day-title-wrap">
+          <div class="day-zh">${d.zh}</div>
+          <div class="day-en">${d.en}</div>
+        </div>
+        <span class="day-country">${d.country}</span>
+        <span class="chevron" id="ch${i}">▶</span>
+      </div>
+      <div class="day-body" id="bd${i}">
+        ${spotHTML}
+        ${carHTML}
+        <div class="section">
+          <div class="section-label">餐食建議</div>
+          <div class="self-food-text">${d.food}</div>
+        </div>
+        <div class="section">
+          <div class="section-label">住宿</div>
+          <div class="hotel" style="line-height:1.8">${renderHotel(d.hotel)}</div>
+        </div>
+        ${shopHTML}
+        ${noteHTML}
+      </div>
+    </div>`;
+  }).join('');
+}
+
+const _leafletMaps = {};
+
+function initDayMap(dayN) {
+  const d = days.find(x => x.n === dayN);
+  if (!d || !d.mapSpots || _leafletMaps[dayN]) return;
+  const el = document.getElementById('map-day' + dayN);
+  if (!el) return;
+  const map = L.map(el, { scrollWheelZoom: false });
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+  }).addTo(map);
+  const markers = d.mapSpots.map((s, idx) => {
+    const icon = L.divIcon({
+      className: '',
+      html: `<div style="background:#8a3220;color:#fff;border-radius:50%;width:26px;height:26px;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;border:2px solid #fff;box-shadow:0 1px 4px rgba(0,0,0,.4)">${idx + 1}</div>`,
+      iconSize: [26, 26], iconAnchor: [13, 13]
+    });
+    return L.marker([s.lat, s.lon], { icon }).addTo(map).bindPopup(`<b>${s.name}</b>`);
+  });
+
+  if (d.mapSpots.length > 1) {
+    const routeLatLngs = d.mapSpots.map(s => [s.lat, s.lon]);
+    const routeLine = L.polyline(routeLatLngs, {
+      color: '#8a3220', weight: 3, opacity: 0.6, dashArray: '1 8', lineCap: 'round'
+    }).addTo(map);
+    L.polylineDecorator(routeLine, {
+      patterns: [
+        { offset: '8%', repeat: '16%', symbol: L.Symbol.arrowHead({
+          pixelSize: 11, polygon: false,
+          pathOptions: { stroke: true, weight: 2.5, color: '#8a3220', opacity: 0.85 }
+        }) }
+      ]
+    }).addTo(map);
+  }
+
+  if (markers.length === 1) {
+    map.setView([markers[0].getLatLng().lat, markers[0].getLatLng().lng], 12);
+  } else if (markers.length > 1) {
+    map.fitBounds(L.featureGroup(markers).getBounds(), { padding: [24, 24] });
+  }
+  _leafletMaps[dayN] = map;
+}
+
+function tog(i) {
+  document.getElementById('bd' + i).classList.toggle('open');
+  document.getElementById('ch' + i).classList.toggle('open');
+  const dayN = days[i].n;
+  setTimeout(() => initDayMap(dayN), 50);
+}
+
+render();
+</script>
+</body>
+</html>
