@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>富山・長野 紅葉雪猴六日自駕</title>
+<title>富山進・小松出 紅葉雪猴六日自駕</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍁</text></svg>">
 <meta name="theme-color" content="#8a3220">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -230,7 +230,7 @@
 
 <header>
   <h1>富山・長野 紅葉雪猴六日自駕</h1>
-  <p>立山黑部纜車賞楓・地獄谷雪猴泡湯・上高地木道健行・富山進富山出</p>
+  <p>立山黑部纜車賞楓・地獄谷雪猴泡湯・上高地木道健行・富山進・小松出</p>
 </header>
 
 <div class="legend">
@@ -264,9 +264,12 @@
         建議鎖定 <b style="color:var(--text)">10月25日〜11月5日</b> 這個窗口：立山黑部走中低海拔段、上高地／戶隱剛過高峰但仍漂亮、松本城與善光寺開始進入見頃，雪猴不受季節影響全年都會泡湯。若想追立山室堂最極致的紅地毯畫面，要提前到9月底〜10月初，但代價是長野市區還是綠的，兩頭沒辦法同時吃到最高峰。
       </div>
 
-      <div class="section-title">富山直飛班機現況</div>
+      <div class="section-title">班機現況・為什麼採用「富山進・小松出」</div>
       <div class="warn-box">
-        <b>目前只有中華航空飛台北－富山</b>，每週一、四各一班（CI170/171、CI370/371），但<b>只公布到 2026/10/24</b>。這個窗口之後（也就是這趟賞楓行程真正會出發的時間）冬季班表尚未公布，機位與班次都可能調整。之前查到「虎航也有飛」的資訊查證後是錯的，虎航目前查無這條航線。訂票前務必先到華航官網或客服確認實際班表，並考慮<b>小松機場</b>（石川縣，離富山約1小時車程）當備案進出點。
+        <b>台北－富山目前只有中華航空</b>，每週一、四各一班（CI170/171、CI370/371），且<b>只公布到 2026/10/24</b>，之後的冬季班表尚未公布。這種一週只有2個航班日的班表，6天行程的去回程日期怎麼湊都對不上（只湊得出4天、5天或8天整週的組合）。之前查到「虎航也有飛富山」的資訊查證後是錯的，虎航目前查無這條航線。
+      </div>
+      <div style="font-size:12px;color:var(--muted);line-height:1.7;margin:10px 0 4px">
+        解法是<b style="color:var(--text)">去程飛富山、回程改小松出境</b>：<b style="color:var(--text)">小松機場</b>（石川縣，離富山約1〜1.5小時車程）長榮航空 BR158 每天都飛，另有虎航、捷星日本可選，回程日期完全不受富山那少少兩天限制。租車走「甲租乙還」，富山空港取車、小松空港還車，Times／Orix／Nissan／Jネット都支援跨縣還車，會另收一筆異地還車費，實際金額訂車時要問清楚。代價是最後一天要多開一段路（平湯溫泉→小松機場約3〜3.5小時，比原本回富山多將近2小時），建議提早出發，順路還能在富山市區停下來買伴手禮。訂票前務必先到華航／長榮官網或客服確認實際班表。
       </div>
     </div>
   </div>
@@ -278,13 +281,14 @@
     <div class="info-head" style="background:var(--lake)" onclick="var b=document.getElementById('driveb');var c=document.getElementById('drivec');b.classList.toggle('open');c.style.transform=b.classList.contains('open')?'rotate(90deg)':''">
       <div>
         <div class="info-head-title">🚗 自駕租車攻略</div>
-        <div class="info-head-sub">富山進富山出・立山黑部與上高地都禁止私家車進入</div>
+        <div class="info-head-sub">富山空港取車・小松空港還車・立山黑部與上高地都禁止私家車進入</div>
       </div>
       <span class="info-chevron" id="drivec">▶</span>
     </div>
     <div class="info-body" id="driveb">
       <div class="section-title">停車重點</div>
       <div class="info-grid">
+        <div class="drive-tile"><div class="k">✈ 甲租乙還</div><div class="v">富山空港取車・小松空港還車，Times／Orix／Nissan／Jネット等連鎖公司支援跨縣還車，會另收異地還車費</div></div>
         <div class="drive-tile"><div class="k">⛰ 立山黑部入口</div><div class="v">車停立山駅停車場，纜車＋高原巴士原路搭回取車，車不能開進阿爾卑斯路線</div></div>
         <div class="drive-tile"><div class="k">🥾 上高地入口</div><div class="v">車停あかんだな駐車場（平湯溫泉旁），轉接駁巴士入園約25分鐘</div></div>
       </div>
@@ -434,7 +438,7 @@ fetchRates();
 
 <main id="app"></main>
 
-<footer>行程為自駕獨立規劃，非跟團行程・景點連結為 Google 地圖搜尋・地圖座標為概略位置僅供參考・富山－台北航班冬季班表尚未公布，出發前請務必查證</footer>
+<footer>行程為自駕獨立規劃，非跟團行程・景點連結為 Google 地圖搜尋・地圖座標為概略位置僅供參考・富山進・小松出為甲租乙還的開口方案，富山－台北冬季班表尚未公布，出發前請務必查證</footer>
 
 <script>
 function gmaps(q) {
@@ -454,7 +458,7 @@ const days = [
     food: "抵達富山機場後直接領車，若時間允許可以到環水公園旁『世界最美星巴克』喝杯咖啡再上路；晚餐建議在立山山麓一帶找當地食堂，白蝦、鱒魚壽司都是富山名物",
     hotel: "立山山麓／大町溫泉鄉一帶（依實際訂房調整）",
     note: "領車後直接開車往立山方向（約1小時車程），今天以移動和休息為主，把體力留到明天走立山黑部",
-    carEvent: { type: "pickup", label: "🚗 富山空港取車", location: "富山空港租車櫃檯", note: "取車後全程自駕到 Day 6 還車，中間立山黑部與上高地兩段車子都要停在管制區外" }
+    carEvent: { type: "pickup", label: "🚗 富山空港取車", location: "富山空港租車櫃檯", note: "訂車時要選「甲租乙還」，最後在小松空港還車，中間立山黑部與上高地兩段車子都要停在管制區外" }
   },
   {
     n: 2, zh: "立山黑部纜車賞楓 → 移動長野", en: "Tateyama Kurobe Alpine Route → Nagano side", country: "富山", flag: "🇯🇵",
@@ -518,16 +522,17 @@ const days = [
     note: "私家車開不進上高地，車直接停到あかんだな駐車場（在平湯溫泉附近），轉接駁巴士入園約25分鐘。建議先搭到大正池站，沿木道走到河童橋（約80分鐘、全程平坦），有餘力再往明神池方向延伸"
   },
   {
-    n: 6, zh: "平湯溫泉 → 返回富山搭機", en: "Hirayu Onsen → Toyama → depart", country: "返程", flag: "🇯🇵→🇹🇼",
+    n: 6, zh: "平湯溫泉 → 富山市區 → 小松搭機", en: "Hirayu Onsen → Toyama → Komatsu → depart", country: "返程", flag: "🇯🇵→🇹🇼",
     spots: [],
     mapSpots: [
       { name: "平湯溫泉", lat: 36.1978, lon: 137.5766 },
-      { name: "富山空港", lat: 36.6483, lon: 137.1876 },
+      { name: "富山市區", lat: 36.6953, lon: 137.2113 },
+      { name: "小松空港", lat: 36.3946, lon: 136.4067 },
     ],
-    food: "回程路上可以在富山市區找點時間吃碗白蝦丼或鱒魚壽司當最後一餐",
+    food: "路上會經過富山市區，可以順道停下來吃碗白蝦丼、買鱒魚壽司當最後一餐兼伴手禮，再繼續開往小松",
     hotel: "溫暖的家",
-    note: "走安房峠道路／中部縱貫道回富山，車程約1.5-2小時，還車後記得預留機場報到時間。富山－台北航線冬季班表尚未公布，訂票前務必先確認實際航班日",
-    carEvent: { type: "dropoff", label: "🚗 富山空港還車", location: "富山空港租車櫃檯", note: "還車後留意報到時間，確認當天實際航班日期與時刻" }
+    note: "走安房峠道路／中部縱貫道先到富山市區（約1.5-2小時），再續開北陸自動車道到小松空港（再約1-1.5小時），全程抓3-3.5小時，比原本只回富山多將近2小時，建議一早出發。還車後記得預留機場報到時間，長榮／台北－小松航班天天有，訂票前仍建議先上官網確認實際班表",
+    carEvent: { type: "dropoff", label: "🚗 小松空港還車", location: "小松空港租車櫃檯", note: "甲租乙還，從富山空港取車一路開到這裡還車，留意報到時間並確認當天實際航班日期與時刻" }
   },
 ];
 
