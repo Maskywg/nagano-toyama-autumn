@@ -298,7 +298,7 @@
     <div class="info-head" style="background:var(--lake)" onclick="var b=document.getElementById('driveb');var c=document.getElementById('drivec');b.classList.toggle('open');c.style.transform=b.classList.contains('open')?'rotate(90deg)':''">
       <div>
         <div class="info-head-title">🚗 自駕租車攻略</div>
-        <div class="info-head-sub">富山空港取車還車・立山黑部與上高地都禁止私家車進入</div>
+        <div class="info-head-sub">富山駅前取車・富山空港還車・立山黑部與上高地都禁止私家車進入</div>
       </div>
       <span class="info-chevron" id="drivec">▶</span>
     </div>
@@ -311,13 +311,13 @@
 
       <div class="section-title">建議租車公司（點擊為 Google 搜尋，非固定連結）</div>
       <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:4px">
-        <a class="rental-chip" href="https://www.google.com/search?q=Toyota+Rent+a+Car+富山空港" target="_blank">Toyota Rent a Car ↗</a>
-        <a class="rental-chip" href="https://www.google.com/search?q=Nippon+Rent-A-Car+富山空港" target="_blank">日本駅前 Nippon Rent-A-Car ↗</a>
-        <a class="rental-chip" href="https://www.google.com/search?q=Times+Car+Rental+富山空港" target="_blank">Times Car ↗</a>
-        <a class="rental-chip" href="https://www.google.com/search?q=Orix+Rent-A-Car+富山空港" target="_blank">Orix Rent-A-Car ↗</a>
-        <a class="rental-chip" href="https://www.google.com/search?q=Nissan+Rent-A-Car+富山空港" target="_blank">Nissan Rent-A-Car ↗</a>
+        <a class="rental-chip" href="https://www.google.com/search?q=Toyota+Rent+a+Car+富山駅" target="_blank">Toyota Rent a Car ↗</a>
+        <a class="rental-chip" href="https://www.google.com/search?q=Nippon+Rent-A-Car+富山駅" target="_blank">日本駅前 Nippon Rent-A-Car ↗</a>
+        <a class="rental-chip" href="https://www.google.com/search?q=Times+Car+Rental+富山駅" target="_blank">Times Car ↗</a>
+        <a class="rental-chip" href="https://www.google.com/search?q=Orix+Rent-A-Car+富山駅" target="_blank">Orix Rent-A-Car ↗</a>
+        <a class="rental-chip" href="https://www.google.com/search?q=Nissan+Rent-A-Car+富山駅" target="_blank">Nissan Rent-A-Car ↗</a>
       </div>
-      <div style="font-size:11px;color:var(--hint);line-height:1.6;margin-bottom:12px">富山空港內或周邊都有櫃檯，賞楓旺季建議提早1-2個月訂車，車型盡量選小型車，山區道路較窄。</div>
+      <div style="font-size:11px;color:var(--hint);line-height:1.6;margin-bottom:12px">Day1住富山市區，取車改到富山駅前門市（不用回空港），還車仍在富山空港（Day8搭機用）。賞楓旺季建議提早1-2個月訂車，車型盡量選小型車，山區道路較窄。</div>
 
       <div class="section-title">開車注意事項</div>
       <div class="tip-list">
@@ -463,27 +463,29 @@ function gmaps(q) {
 
 const days = [
   {
-    n: 1, zh: "抵達富山・領車前往立山山麓", en: "Arrive Toyama → Tateyama foothills", country: "富山", flag: "🇯🇵",
-    spots: [],
+    n: 1, zh: "抵達富山・搭巴士到富山市區", en: "Arrive Toyama → bus to Toyama city", country: "富山", flag: "🇯🇵",
+    spots: [
+      { n: "◎富山駅周邊（傍晚抵達，簡單吃晚餐休息）", type: "dot", links: [{ t: "📍 地圖", u: gmaps("富山駅") }] },
+    ],
     mapSpots: [
       { name: "富山空港", lat: 36.6483, lon: 137.1876 },
-      { name: "立山方向", lat: 36.5763, lon: 137.4386 },
+      { name: "富山駅", lat: 36.6953, lon: 137.2138 },
     ],
-    food: "17:35抵達已經是傍晚，領車、開車到立山山麓時大概都入夜了，晚餐建議直接在當地找食堂解決，白蝦、鱒魚壽司都是富山名物，之後幾天遇到都可以吃",
-    hotel: "立山山麓／大町溫泉鄉一帶（依實際訂房調整）",
-    note: "17:35抵達富山空港，入境＋領車大約要到18:30以後才能出發，直接開車往立山方向（約1小時車程）。這天純粹是移動＋休息，時間上不夠再繞去市區景點，把體力留到明天走立山黑部",
+    food: "17:35抵達已經是傍晚，晚餐建議直接在富山駅周邊解決，白蝦、鱒魚壽司、富山ブラックラーメン（黑拉麵）都是在地名物，之後幾天遇到白蝦鱒魚壽司都可以再吃",
+    hotel: "富山市區（富山駅周邊）",
+    note: "第一天先不開車：富山きときと空港有空港連絡巴士直達富山駅，車程約23分鐘、票價420円，配合航班起降時間發車；行李多也可以選計程車（約15-20分鐘）。當晚不用適應左駕，先在富山駅周邊住一晚，租車延到明天早上再取",
     flights: [
       { label: "去程", airline: "中華航空", no: "CI370", from: "台北 TPE", to: "富山 TOY", dep: "13:45", arr: "17:35", duration: "2h50m" },
     ],
-    carEvent: { type: "pickup", label: "🚗 富山空港取車", location: "富山空港租車櫃檯", note: "取車後全程自駕到 Day 8 還車，中間立山黑部與上高地兩段車子都要停在管制區外" }
   },
   {
-    n: 2, zh: "立山黑部纜車賞楓（深度版）", en: "Tateyama Kurobe Alpine Route (full day)", country: "富山", flag: "🇯🇵",
+    n: 2, zh: "領車・立山黑部纜車賞楓（深度版）", en: "Pick up car → Tateyama Kurobe Alpine Route (full day)", country: "富山", flag: "🇯🇵",
     spots: [
       { n: "★立山黑部阿爾卑斯路線（纜車＋高原巴士）", type: "star", links: [{ t: "官網", u: "https://www.alpen-route.com/tw/", o: true }, { t: "📍 地圖", u: gmaps("立山駅") }] },
       { n: "◎室堂・大觀峰・黑部湖（時間充裕可以走到底）", type: "dot", links: [{ t: "📍 地圖", u: gmaps("室堂") }] },
     ],
     mapSpots: [
+      { name: "富山駅", lat: 36.6953, lon: 137.2138 },
       { name: "立山駅", lat: 36.5763, lon: 137.4386 },
       { name: "美女平", lat: 36.5910, lon: 137.4540 },
       { name: "彌陀ヶ原", lat: 36.5730, lon: 137.5540 },
@@ -492,7 +494,8 @@ const days = [
     ],
     food: "立山駅、美女平、室堂都有簡餐和伴手禮店，山上餐點選擇不多，建議先在山下超商準備一些行動糧",
     hotel: "宇奈月溫泉（往黑部峽谷鐵道方向移動，縮短隔天車程）",
-    note: "私家車開不進阿爾卑斯路線，車子整天停在立山駅停車場，這天不用急著移動，可以照體力深度走到室堂。原路搭回取車後開車到宇奈月溫泉過夜（約1-1.5小時），順便先泡個湯"
+    note: "早上先在富山駅前的租車門市取車，開車到立山駅（約40-50分鐘）。私家車開不進阿爾卑斯路線，車子整天停在立山駅停車場，可以照體力深度走到室堂。原路搭回取車後開車到宇奈月溫泉過夜（約1-1.5小時），順便先泡個湯",
+    carEvent: { type: "pickup", label: "🚗 富山駅前取車", location: "富山駅前租車門市", note: "改到富山駅前取車，不用回空港，取車後全程自駕到 Day 8 還車，中間立山黑部與上高地兩段車子都要停在管制區外" }
   },
   {
     n: 3, zh: "黑部峽谷鐵道賞楓 → 移動長野", en: "Kurobe Gorge Railway → move to Nagano side", country: "富山", flag: "🇯🇵",
