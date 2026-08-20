@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>富山進・小松出 紅葉雪猴六日自駕</title>
+<title>富山進富山出 紅葉雪猴八日自駕</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍁</text></svg>">
 <meta name="theme-color" content="#8a3220">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -229,8 +229,8 @@
 <body>
 
 <header>
-  <h1>富山・長野 紅葉雪猴六日自駕</h1>
-  <p>立山黑部纜車賞楓・地獄谷雪猴泡湯・上高地木道健行・富山進・小松出</p>
+  <h1>富山・長野 紅葉雪猴八日自駕</h1>
+  <p>立山黑部纜車賞楓・黑部峽谷鐵道・地獄谷雪猴泡湯・戶隱高原・上高地木道健行・富山進富山出</p>
 </header>
 
 <div class="legend">
@@ -264,12 +264,12 @@
         建議鎖定 <b style="color:var(--text)">10月25日〜11月5日</b> 這個窗口：立山黑部走中低海拔段、上高地／戶隱剛過高峰但仍漂亮、松本城與善光寺開始進入見頃，雪猴不受季節影響全年都會泡湯。若想追立山室堂最極致的紅地毯畫面，要提前到9月底〜10月初，但代價是長野市區還是綠的，兩頭沒辦法同時吃到最高峰。
       </div>
 
-      <div class="section-title">班機現況・為什麼採用「富山進・小松出」</div>
+      <div class="section-title">班機現況・為什麼是8天7夜</div>
       <div class="warn-box">
-        <b>台北－富山目前只有中華航空</b>，每週一、四各一班（CI170/171、CI370/371），且<b>只公布到 2026/10/24</b>，之後的冬季班表尚未公布。這種一週只有2個航班日的班表，6天行程的去回程日期怎麼湊都對不上（只湊得出4天、5天或8天整週的組合）。之前查到「虎航也有飛富山」的資訊查證後是錯的，虎航目前查無這條航線。
+        <b>台北－富山目前只有中華航空</b>，每週一、四各一班（CI170/171、CI370/371），且<b>只公布到 2026/10/24</b>，之後的冬季班表尚未公布。一週只有2個航班日，去回程日期只湊得出幾種組合：週一進週四出（4天3夜）、週四進週一出（5天4夜），或去程回程選同一個星期幾（8天7夜，整整一週）。之前查到「虎航也有飛富山」的資訊查證後是錯的，虎航目前查無這條航線。
       </div>
       <div style="font-size:12px;color:var(--muted);line-height:1.7;margin:10px 0 4px">
-        解法是<b style="color:var(--text)">去程飛富山、回程改小松出境</b>：<b style="color:var(--text)">小松機場</b>（石川縣，離富山約1〜1.5小時車程）長榮航空 BR158 每天都飛，另有虎航、捷星日本可選，回程日期完全不受富山那少少兩天限制。租車走「甲租乙還」，富山空港取車、小松空港還車，Times／Orix／Nissan／Jネット都支援跨縣還車，會另收一筆異地還車費，實際金額訂車時要問清楚。代價是最後一天要多開一段路（平湯溫泉→小松機場約3〜3.5小時，比原本回富山多將近2小時），建議提早出發，順路還能在富山市區停下來買伴手禮。訂票前務必先到華航／長榮官網或客服確認實際班表。
+        這個版本抓<b style="color:var(--text)">8天7夜</b>：去程與回程間隔剛好一整週（例如週一進、隔週一出，或週四進、隔週四出），跟目前的班表節奏對得上，也不用切換機場。多出來的天數把黑部峽谷鐵道、戶隱高原都加回來，步調更接近原本影片「不累、優雅」的調性。整套規劃仍然建立在華航會持續維持現有星期幾的假設上，冬季班表還沒公布，訂票前務必先到華航官網或客服確認實際班表。
       </div>
     </div>
   </div>
@@ -281,14 +281,13 @@
     <div class="info-head" style="background:var(--lake)" onclick="var b=document.getElementById('driveb');var c=document.getElementById('drivec');b.classList.toggle('open');c.style.transform=b.classList.contains('open')?'rotate(90deg)':''">
       <div>
         <div class="info-head-title">🚗 自駕租車攻略</div>
-        <div class="info-head-sub">富山空港取車・小松空港還車・立山黑部與上高地都禁止私家車進入</div>
+        <div class="info-head-sub">富山空港取車還車・立山黑部與上高地都禁止私家車進入</div>
       </div>
       <span class="info-chevron" id="drivec">▶</span>
     </div>
     <div class="info-body" id="driveb">
       <div class="section-title">停車重點</div>
       <div class="info-grid">
-        <div class="drive-tile"><div class="k">✈ 甲租乙還</div><div class="v">富山空港取車・小松空港還車，Times／Orix／Nissan／Jネット等連鎖公司支援跨縣還車，會另收異地還車費</div></div>
         <div class="drive-tile"><div class="k">⛰ 立山黑部入口</div><div class="v">車停立山駅停車場，纜車＋高原巴士原路搭回取車，車不能開進阿爾卑斯路線</div></div>
         <div class="drive-tile"><div class="k">🥾 上高地入口</div><div class="v">車停あかんだな駐車場（平湯溫泉旁），轉接駁巴士入園約25分鐘</div></div>
       </div>
@@ -438,7 +437,7 @@ fetchRates();
 
 <main id="app"></main>
 
-<footer>行程為自駕獨立規劃，非跟團行程・景點連結為 Google 地圖搜尋・地圖座標為概略位置僅供參考・富山進・小松出為甲租乙還的開口方案，富山－台北冬季班表尚未公布，出發前請務必查證</footer>
+<footer>行程為自駕獨立規劃，非跟團行程・景點連結為 Google 地圖搜尋・地圖座標為概略位置僅供參考・富山－台北航班冬季班表尚未公布，出發前請務必查證</footer>
 
 <script>
 function gmaps(q) {
@@ -458,42 +457,69 @@ const days = [
     food: "抵達富山機場後直接領車，若時間允許可以到環水公園旁『世界最美星巴克』喝杯咖啡再上路；晚餐建議在立山山麓一帶找當地食堂，白蝦、鱒魚壽司都是富山名物",
     hotel: "立山山麓／大町溫泉鄉一帶（依實際訂房調整）",
     note: "領車後直接開車往立山方向（約1小時車程），今天以移動和休息為主，把體力留到明天走立山黑部",
-    carEvent: { type: "pickup", label: "🚗 富山空港取車", location: "富山空港租車櫃檯", note: "訂車時要選「甲租乙還」，最後在小松空港還車，中間立山黑部與上高地兩段車子都要停在管制區外" }
+    carEvent: { type: "pickup", label: "🚗 富山空港取車", location: "富山空港租車櫃檯", note: "取車後全程自駕到 Day 8 還車，中間立山黑部與上高地兩段車子都要停在管制區外" }
   },
   {
-    n: 2, zh: "立山黑部纜車賞楓 → 移動長野", en: "Tateyama Kurobe Alpine Route → Nagano side", country: "富山", flag: "🇯🇵",
+    n: 2, zh: "立山黑部纜車賞楓（深度版）", en: "Tateyama Kurobe Alpine Route (full day)", country: "富山", flag: "🇯🇵",
     spots: [
       { n: "★立山黑部阿爾卑斯路線（纜車＋高原巴士）", type: "star", links: [{ t: "官網", u: "https://www.alpen-route.com/tw/", o: true }, { t: "📍 地圖", u: gmaps("立山駅") }] },
-      { n: "◎彌陀ヶ原・天狗平（此時節見頃在中低海拔段）", type: "dot", links: [{ t: "📍 地圖", u: gmaps("彌陀ヶ原") }] },
-      { n: "◎大觀峰・黑部湖（體力足夠可延伸）", type: "dot", links: [{ t: "📍 地圖", u: gmaps("黑部湖") }] },
+      { n: "◎室堂・大觀峰・黑部湖（時間充裕可以走到底）", type: "dot", links: [{ t: "📍 地圖", u: gmaps("室堂") }] },
     ],
     mapSpots: [
       { name: "立山駅", lat: 36.5763, lon: 137.4386 },
       { name: "美女平", lat: 36.5910, lon: 137.4540 },
       { name: "彌陀ヶ原", lat: 36.5730, lon: 137.5540 },
       { name: "大觀峰", lat: 36.5690, lon: 137.6190 },
+      { name: "黑部湖", lat: 36.5647, lon: 137.6432 },
     ],
     food: "立山駅、美女平、室堂都有簡餐和伴手禮店，山上餐點選擇不多，建議先在山下超商準備一些行動糧",
-    hotel: "湯田中溫泉（地獄谷野猿公苑附近，當晚就能先泡湯）",
-    note: "私家車開不進阿爾卑斯路線，車子整天停在立山駅停車場，纜車＋巴士原路搭回取車後再開車往長野方向（約2.5小時）。視腳程調整走到彌陀ヶ原就好，或體力夠延伸到大觀峰、黑部湖"
+    hotel: "宇奈月溫泉（往黑部峽谷鐵道方向移動，縮短隔天車程）",
+    note: "私家車開不進阿爾卑斯路線，車子整天停在立山駅停車場，這天不用急著移動，可以照體力深度走到室堂。原路搭回取車後開車到宇奈月溫泉過夜（約1-1.5小時），順便先泡個湯"
   },
   {
-    n: 3, zh: "地獄谷雪猴泡湯 → 善光寺散步", en: "Jigokudani snow monkeys → Zenkoji Temple", country: "長野", flag: "🇯🇵",
+    n: 3, zh: "黑部峽谷鐵道賞楓 → 移動長野", en: "Kurobe Gorge Railway → move to Nagano side", country: "富山", flag: "🇯🇵",
+    spots: [
+      { n: "★黑部峽谷鐵道（宇奈月溫泉出發，賞楓小火車）", type: "star", links: [{ t: "官網", u: "https://www.kurotetu.co.jp/", o: true }, { t: "📍 地圖", u: gmaps("黒部峡谷鉄道 宇奈月駅") }] },
+      { n: "◎欅平（終點站，體力足夠可以坐到底）", type: "dot", links: [{ t: "📍 地圖", u: gmaps("欅平駅") }] },
+    ],
+    mapSpots: [
+      { name: "宇奈月溫泉駅", lat: 36.7756, lon: 137.6206 },
+      { name: "欅平", lat: 36.8236, lon: 137.6392 },
+    ],
+    food: "宇奈月溫泉街有不少老字號溫泉饅頭店，小火車上也可以買熱茶暖手",
+    hotel: "湯田中溫泉（地獄谷野猿公苑附近，當晚就能先泡湯）",
+    note: "小火車全程約20公里，宇奈月到欅平單程約1小時20分，來回含停留抓半天，視時間調整只坐一段或坐到底。中午後開車經白馬南下長野方向（約2.5-3小時）"
+  },
+  {
+    n: 4, zh: "地獄谷雪猴泡湯 → 戶隱高原", en: "Jigokudani snow monkeys → Togakushi highland", country: "長野", flag: "🇯🇵",
     spots: [
       { n: "★地獄谷野猿公苑（野生獼猴泡溫泉）", type: "star", links: [{ t: "官網", u: "https://jigokudani-yaenkoen.co.jp/", o: true }, { t: "📍 地圖", u: gmaps("地獄谷野猿公苑") }] },
-      { n: "★善光寺（信州第一名刹）", type: "star", links: [{ t: "📍 地圖", u: gmaps("善光寺") }] },
-      { n: "♨湯田中溫泉街（順路可再泡一次）", type: "onsen", links: [{ t: "📍 地圖", u: gmaps("湯田中溫泉") }] },
+      { n: "★戶隱高原・鏡池（紅葉倒影經典拍照點）", type: "star", links: [{ t: "📍 地圖", u: gmaps("戸隠 鏡池") }] },
     ],
     mapSpots: [
       { name: "地獄谷野猿公苑入口", lat: 36.7318, lon: 138.4614 },
-      { name: "善光寺", lat: 36.6605, lon: 138.1864 },
+      { name: "戶隱鏡池", lat: 36.7332, lon: 138.1057 },
     ],
-    food: "信州蕎麥麵、烤餡餅（おやき）是長野招牌，善光寺參道周邊老店選擇多",
-    hotel: "松本市區",
-    note: "猴子上午活動力最好，建議8-9點就到停車場，從入口徒步約30-40分鐘進猴園；下午移動到長野市區逛善光寺，再開車約1小時到松本。時間充裕可以加走小布施（藝術小鎮）"
+    food: "戶隱是信州三大蕎麥產地之一，戶隱そば值得專程一試；湯田中周邊也有不少老字號蕎麥麵店",
+    hotel: "長野市區",
+    note: "猴子上午活動力最好，建議8-9點就到停車場，從入口徒步約30-40分鐘進猴園；下午開車約1小時到戶隱，鏡池步道平緩好走，傍晚移動到長野市區"
   },
   {
-    n: 4, zh: "松本城慢遊", en: "Matsumoto Castle", country: "長野", flag: "🇯🇵",
+    n: 5, zh: "善光寺・小布施 → 移動松本", en: "Zenkoji & Obuse → move to Matsumoto", country: "長野", flag: "🇯🇵",
+    spots: [
+      { n: "★善光寺（信州第一名刹）", type: "star", links: [{ t: "📍 地圖", u: gmaps("善光寺") }] },
+      { n: "★小布施（栗子甜點・北齋美術館的藝術小鎮）", type: "star", links: [{ t: "📍 地圖", u: gmaps("小布施") }] },
+    ],
+    mapSpots: [
+      { name: "善光寺", lat: 36.6605, lon: 138.1864 },
+      { name: "小布施", lat: 36.6825, lon: 138.3055 },
+    ],
+    food: "信州蕎麥麵、烤餡餅（おやき）是長野招牌；小布施的栗子羊羹、蒙布朗也不能錯過",
+    hotel: "松本市區（連住兩晚）",
+    note: "善光寺參道早上人潮較少，小布施適合安排午後慢慢逛，再開車約1.5小時到松本"
+  },
+  {
+    n: 6, zh: "松本城慢遊", en: "Matsumoto Castle", country: "長野", flag: "🇯🇵",
     spots: [
       { n: "★松本城（現存天守，日本國寶）", type: "star", links: [{ t: "官網", u: "https://www.matsumoto-castle.jp/", o: true }, { t: "📍 地圖", u: gmaps("松本城") }] },
       { n: "◎城下町散步（縄手通り・中町通り）", type: "dot", links: [{ t: "📍 地圖", u: gmaps("縄手通り 松本") }] },
@@ -506,7 +532,7 @@ const days = [
     note: "不爬陡梯的減法慢遊路線，天守內部階梯較陡，體力有限可以只在外觀護城河邊散步拍照"
   },
   {
-    n: 5, zh: "上高地賞楓健行", en: "Kamikochi autumn hike", country: "長野", flag: "🇯🇵",
+    n: 7, zh: "上高地賞楓健行", en: "Kamikochi autumn hike", country: "長野", flag: "🇯🇵",
     spots: [
       { n: "★大正池・田代濕原木道（穗高連峰倒影，最推薦段落）", type: "star", links: [{ t: "📍 地圖", u: gmaps("大正池") }] },
       { n: "★河童橋（上高地地標）", type: "star", links: [{ t: "📍 地圖", u: gmaps("河童橋") }] },
@@ -522,17 +548,16 @@ const days = [
     note: "私家車開不進上高地，車直接停到あかんだな駐車場（在平湯溫泉附近），轉接駁巴士入園約25分鐘。建議先搭到大正池站，沿木道走到河童橋（約80分鐘、全程平坦），有餘力再往明神池方向延伸"
   },
   {
-    n: 6, zh: "平湯溫泉 → 富山市區 → 小松搭機", en: "Hirayu Onsen → Toyama → Komatsu → depart", country: "返程", flag: "🇯🇵→🇹🇼",
+    n: 8, zh: "平湯溫泉 → 返回富山搭機", en: "Hirayu Onsen → Toyama → depart", country: "返程", flag: "🇯🇵→🇹🇼",
     spots: [],
     mapSpots: [
       { name: "平湯溫泉", lat: 36.1978, lon: 137.5766 },
-      { name: "富山市區", lat: 36.6953, lon: 137.2113 },
-      { name: "小松空港", lat: 36.3946, lon: 136.4067 },
+      { name: "富山空港", lat: 36.6483, lon: 137.1876 },
     ],
-    food: "路上會經過富山市區，可以順道停下來吃碗白蝦丼、買鱒魚壽司當最後一餐兼伴手禮，再繼續開往小松",
+    food: "回程路上可以在富山市區找點時間吃碗白蝦丼或鱒魚壽司當最後一餐",
     hotel: "溫暖的家",
-    note: "走安房峠道路／中部縱貫道先到富山市區（約1.5-2小時），再續開北陸自動車道到小松空港（再約1-1.5小時），全程抓3-3.5小時，比原本只回富山多將近2小時，建議一早出發。還車後記得預留機場報到時間，長榮／台北－小松航班天天有，訂票前仍建議先上官網確認實際班表",
-    carEvent: { type: "dropoff", label: "🚗 小松空港還車", location: "小松空港租車櫃檯", note: "甲租乙還，從富山空港取車一路開到這裡還車，留意報到時間並確認當天實際航班日期與時刻" }
+    note: "走安房峠道路／中部縱貫道回富山，車程約1.5-2小時，還車後記得預留機場報到時間。這8天7夜是配合華航目前只在週一、週四飛的班表節奏（去程回程選同一個星期幾），實際冬季班表尚未公布，訂票前務必先確認",
+    carEvent: { type: "dropoff", label: "🚗 富山空港還車", location: "富山空港租車櫃檯", note: "還車後留意報到時間，確認當天實際航班日期與時刻" }
   },
 ];
 
@@ -541,14 +566,20 @@ const dayShoppingMap = {
     { name: "立山黑部限定商品", tag: "souvenir", desc: "纜車／高原巴士造型餅乾、御守等，立山駅與室堂的商店都有賣", links: [] },
   ],
   3: [
-    { name: "信州味噌・七味唐辛子", tag: "food", desc: "善光寺仲見世通「八幡屋礒五郎」是七味的老字號名店", links: [] },
-    { name: "信州蘋果製品", tag: "food", desc: "長野是日本知名蘋果產地，蘋果汁、蘋果派都值得帶", links: [] },
+    { name: "宇奈月溫泉饅頭・黑部名水商品", tag: "food", desc: "宇奈月溫泉街老舖溫泉饅頭，還有黑部名水製成的商品，車站周邊都買得到", links: [] },
   ],
   4: [
+    { name: "戶隱蕎麥麵", tag: "food", desc: "信州三大蕎麥之一，戶隱高原周邊蕎麥麵店可以買乾麵版本回家", links: [] },
+  ],
+  5: [
+    { name: "信州味噌・七味唐辛子", tag: "food", desc: "善光寺仲見世通「八幡屋礒五郎」是七味的老字號名店", links: [] },
+    { name: "小布施栗子甜點", tag: "food", desc: "栗蒸羊羹、蒙布朗是小布施最知名的伴手禮，老舖選擇多", links: [] },
+  ],
+  6: [
     { name: "松本民藝家具・工藝品", tag: "souvenir", desc: "中町通り一帶老屋改建的工藝品店，木工與漆器選擇多", links: [] },
     { name: "手打ち蕎麥乾麵", tag: "food", desc: "城下町蕎麥麵店多有販售乾麵伴手禮版本", links: [] },
   ],
-  6: [
+  8: [
     { name: "鱒魚壽司（ますのすし）", tag: "food", desc: "富山車站便當名物，壓製而成、可常溫保存，很適合當最後一餐或伴手禮", links: [] },
     { name: "白蝦相關伴手禮", tag: "food", desc: "白蝦仙貝、白蝦昆布卷等富山灣名產，車站土產店都買得到", links: [] },
   ],
