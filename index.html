@@ -485,7 +485,7 @@ const days = [
     n: 2, zh: "立山黑部纜車賞楓（電鐵往返，不開車）", en: "Tateyama Kurobe Alpine Route (train day trip, no car)", country: "富山", flag: "🇯🇵",
     spots: [
       { n: "★立山黑部阿爾卑斯路線（纜車＋高原巴士）", type: "star", links: [{ t: "官網", u: "https://www.alpen-route.com/tw/", o: true }, { t: "📍 地圖", u: gmaps("立山駅") }] },
-      { n: "◎大觀峰（推薦終點，這個時節見頃比室堂更好）", type: "dot", links: [{ t: "📍 地圖", u: gmaps("大觀峰 立山黒部") }] },
+      { n: "◎大觀峰・黑部湖（訂票選「黑部子」站，這個時節見頃比室堂更好）", type: "dot", links: [{ t: "📍 地圖", u: gmaps("黒部湖 立山黒部") }] },
     ],
     mapSpots: [
       { name: "電鉄富山", lat: 36.6953, lon: 137.2138 },
@@ -496,7 +496,7 @@ const days = [
     ],
     food: "立山駅、美女平、室堂都有簡餐和伴手禮店，山上餐點選擇不多，建議先在山下超商準備一些行動糧",
     hotel: "富山市區（連住兩晚，行李留在飯店不用搬）",
-    note: "這天不開車，直接搭富山地方鐵道立山線從電鉄富山到立山駅，建議6-7點出發，銜接立山ケーブルカー第一班（約7:30-8:00開始）。玩到大觀峰就好，不用勉強到黑部湖——黑部湖遊覽船已在2024年停駛，且這個時節紅葉見頃其實在大觀峰、黑部湖一帶的中海拔段，室堂只是路過。原路搭回立山駅、火車回富山，晚上仍住同一間飯店。時刻表分秒眾多，官方PDF每年會更新，出發前務必上<a href=\"https://www.alpen-route.com/timetable/\" target=\"_blank\" style=\"color:var(--primary)\">立山黑部官網時刻表頁</a>核對最新分鐘數",
+    note: "這天不開車，直接搭富山地方鐵道立山線從電鉄富山到立山駅，建議6-7點出發，銜接立山ケーブルカー第一班（約7:30-8:00開始）。官方網路訂票系統從電鉄富山出發的來回票只能選「黑部子」站（即黑部湖）或「扇澤」（長野側，不是這裡要選的），大觀峰本身不是獨立販售的到達站，所以要訂到「黑部子」——這張票的路線本來就會經過大觀峰，去程回程都看得到，不用糾結怎麼只買到大觀峰。黑部湖遊覽船雖然已在2024年停駛，但反正票已經包含到那裡，順路走到底也不虧；這個時節紅葉見頃其實在大觀峰、黑部湖一帶的中海拔段，室堂只是路過。原路搭回立山駅、火車回富山，晚上仍住同一間飯店。時刻表分秒眾多，官方PDF每年會更新，出發前務必上<a href=\"https://www.alpen-route.com/timetable/\" target=\"_blank\" style=\"color:var(--primary)\">立山黑部官網時刻表頁</a>核對最新分鐘數",
     routeProfile: true,
   },
   {
@@ -681,44 +681,52 @@ function render() {
     let routeProfileHTML = '';
     if (d.routeProfile) {
       routeProfileHTML = `<div class="trail-map">
-        <svg viewBox="0 0 680 170" width="100%" role="img" aria-label="立山黑部路線全圖：電鉄富山、立山駅、美女平、室堂、大觀峰">
-          <line x1="55" y1="100" x2="195" y2="100" stroke="var(--hint)" stroke-width="2" stroke-linecap="round" stroke-dasharray="1 6"/>
-          <line x1="195" y1="100" x2="335" y2="100" stroke="var(--primary)" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 5"/>
-          <line x1="335" y1="100" x2="475" y2="100" stroke="var(--primary)" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 5"/>
-          <line x1="475" y1="100" x2="615" y2="100" stroke="var(--primary)" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="1 5"/>
+        <svg viewBox="0 0 680 170" width="100%" role="img" aria-label="立山黑部路線全圖：電鉄富山、立山駅、美女平、室堂、大觀峰、黑部子(黒部湖)">
+          <line x1="50" y1="100" x2="150" y2="100" stroke="var(--hint)" stroke-width="2" stroke-linecap="round" stroke-dasharray="1 6"/>
+          <line x1="150" y1="100" x2="250" y2="100" stroke="var(--primary)" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 5"/>
+          <line x1="250" y1="100" x2="370" y2="100" stroke="var(--primary)" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 5"/>
+          <line x1="370" y1="100" x2="480" y2="100" stroke="var(--primary)" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 5"/>
+          <line x1="480" y1="100" x2="610" y2="100" stroke="var(--primary)" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="1 5"/>
 
-          <circle cx="55" cy="100" r="8" fill="var(--lake)" stroke="white" stroke-width="2"/>
-          <text x="55" y="78" text-anchor="middle" font-size="12" fill="var(--text)">電鉄富山</text>
+          <circle cx="50" cy="100" r="8" fill="var(--lake)" stroke="white" stroke-width="2"/>
+          <text x="50" y="78" text-anchor="middle" font-size="12" fill="var(--text)">電鉄富山</text>
 
-          <circle cx="195" cy="100" r="9" fill="var(--primary-mid)" stroke="white" stroke-width="2"/>
-          <text x="195" y="78" text-anchor="middle" font-size="12" fill="var(--text)">立山駅</text>
-          <text x="195" y="91" text-anchor="middle" font-size="10" fill="var(--muted)">475m</text>
+          <circle cx="150" cy="100" r="9" fill="var(--primary-mid)" stroke="white" stroke-width="2"/>
+          <text x="150" y="78" text-anchor="middle" font-size="12" fill="var(--text)">立山駅</text>
+          <text x="150" y="91" text-anchor="middle" font-size="10" fill="var(--muted)">475m</text>
 
-          <circle cx="335" cy="100" r="8" fill="var(--primary-mid)" stroke="white" stroke-width="2"/>
-          <text x="335" y="78" text-anchor="middle" font-size="12" fill="var(--text)">美女平</text>
-          <text x="335" y="91" text-anchor="middle" font-size="10" fill="var(--muted)">977m</text>
+          <circle cx="250" cy="100" r="8" fill="var(--primary-mid)" stroke="white" stroke-width="2"/>
+          <text x="250" y="78" text-anchor="middle" font-size="12" fill="var(--text)">美女平</text>
+          <text x="250" y="91" text-anchor="middle" font-size="10" fill="var(--muted)">977m</text>
 
-          <circle cx="475" cy="100" r="8" fill="var(--primary-mid)" stroke="white" stroke-width="2"/>
-          <text x="475" y="78" text-anchor="middle" font-size="12" fill="var(--text)">室堂</text>
-          <text x="475" y="91" text-anchor="middle" font-size="10" fill="var(--muted)">2450m</text>
+          <circle cx="370" cy="100" r="8" fill="var(--primary-mid)" stroke="white" stroke-width="2"/>
+          <text x="370" y="78" text-anchor="middle" font-size="12" fill="var(--text)">室堂</text>
+          <text x="370" y="91" text-anchor="middle" font-size="10" fill="var(--muted)">2450m</text>
 
-          <circle cx="615" cy="100" r="11" fill="var(--primary)" stroke="white" stroke-width="2"/>
-          <text x="615" y="78" text-anchor="middle" font-size="14" font-weight="600" fill="var(--primary)">★大觀峰</text>
-          <text x="615" y="91" text-anchor="middle" font-size="10" fill="var(--muted)">2316m</text>
+          <circle cx="480" cy="100" r="8" fill="var(--primary-mid)" stroke="white" stroke-width="2"/>
+          <text x="480" y="78" text-anchor="middle" font-size="12" fill="var(--text)">大觀峰</text>
+          <text x="480" y="91" text-anchor="middle" font-size="10" fill="var(--muted)">2316m</text>
 
-          <text x="125" y="123" text-anchor="middle" font-size="10" fill="var(--muted)">立山線電車</text>
-          <text x="125" y="136" text-anchor="middle" font-size="10" fill="var(--muted)">約65分</text>
+          <circle cx="610" cy="100" r="11" fill="var(--primary)" stroke="white" stroke-width="2"/>
+          <text x="610" y="78" text-anchor="middle" font-size="13" font-weight="600" fill="var(--primary)">★黑部子</text>
+          <text x="610" y="91" text-anchor="middle" font-size="10" fill="var(--muted)">黒部湖 1455m</text>
 
-          <text x="265" y="123" text-anchor="middle" font-size="10" fill="var(--muted)">立山纜車</text>
-          <text x="265" y="136" text-anchor="middle" font-size="10" fill="var(--muted)">約7分</text>
+          <text x="100" y="123" text-anchor="middle" font-size="10" fill="var(--muted)">立山線電車</text>
+          <text x="100" y="136" text-anchor="middle" font-size="10" fill="var(--muted)">約65分</text>
 
-          <text x="405" y="123" text-anchor="middle" font-size="10" fill="var(--muted)">高原巴士</text>
-          <text x="405" y="136" text-anchor="middle" font-size="10" fill="var(--muted)">約50分</text>
+          <text x="200" y="123" text-anchor="middle" font-size="10" fill="var(--muted)">立山纜車</text>
+          <text x="200" y="136" text-anchor="middle" font-size="10" fill="var(--muted)">約7分</text>
 
-          <text x="545" y="123" text-anchor="middle" font-size="10" fill="var(--muted)">電氣巴士</text>
-          <text x="545" y="136" text-anchor="middle" font-size="10" fill="var(--muted)">約10分</text>
+          <text x="310" y="123" text-anchor="middle" font-size="10" fill="var(--muted)">高原巴士</text>
+          <text x="310" y="136" text-anchor="middle" font-size="10" fill="var(--muted)">約50分</text>
+
+          <text x="425" y="123" text-anchor="middle" font-size="10" fill="var(--muted)">電氣巴士</text>
+          <text x="425" y="136" text-anchor="middle" font-size="10" fill="var(--muted)">約10分</text>
+
+          <text x="545" y="123" text-anchor="middle" font-size="10" fill="var(--muted)">纜索鐵道</text>
+          <text x="545" y="136" text-anchor="middle" font-size="10" fill="var(--muted)">約12分</text>
         </svg>
-        <div class="trail-map-caption">高原巴士沿途經過彌陀ヶ原、天狗平；單程電鉄富山到大觀峰約2小時12分，原路來回抓一整天。時刻依季節調整，出發前請上官網核對</div>
+        <div class="trail-map-caption">高原巴士沿途經過彌陀ヶ原、天狗平；訂票選「黑部子」站，單程電鉄富山到黑部子約2小時24分，原路來回抓一整天。時刻依季節調整，出發前請上官網核對</div>
       </div>`;
     }
 
