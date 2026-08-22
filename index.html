@@ -136,9 +136,10 @@
 
   .day-num {
     background: var(--primary-light); color: var(--primary); border-radius: var(--radius-sm);
-    font-size: 11px; font-weight: 500; padding: 3px 8px; white-space: nowrap; min-width: 46px;
-    text-align: center; flex-shrink: 0;
+    font-size: 11px; font-weight: 500; padding: 3px 8px; white-space: nowrap; min-width: 54px;
+    text-align: center; flex-shrink: 0; line-height: 1.4;
   }
+  .day-num-date { font-size: 10px; font-weight: 400; opacity: 0.8; }
 
   .flag { font-size: 14px; flex-shrink: 0; }
   .day-title-wrap { flex: 1; min-width: 0; }
@@ -467,6 +468,7 @@ function gmaps(q) {
 const days = [
   {
     n: 1, zh: "抵達富山・搭巴士到富山市區", en: "Arrive Toyama → bus to Toyama city", country: "富山", flag: "🇯🇵",
+    date: "10/29（四）",
     spots: [
       { n: "◎富山駅周邊（傍晚抵達，簡單吃晚餐休息）", type: "dot", links: [{ t: "📍 地圖", u: gmaps("富山駅") }] },
     ],
@@ -483,6 +485,7 @@ const days = [
   },
   {
     n: 2, zh: "立山黑部纜車賞楓（電鐵往返，不開車）", en: "Tateyama Kurobe Alpine Route (train day trip, no car)", country: "富山", flag: "🇯🇵",
+    date: "10/30（五）",
     spots: [
       { n: "★立山黑部阿爾卑斯路線（纜車＋高原巴士）", type: "star", links: [{ t: "官網", u: "https://www.alpen-route.com/tw/", o: true }, { t: "📍 地圖", u: gmaps("立山駅") }] },
       { n: "◎大觀峰・黑部湖（訂票選「黑部子」站，這個時節見頃比室堂更好）", type: "dot", links: [{ t: "📍 地圖", u: gmaps("黒部湖 立山黒部") }] },
@@ -501,6 +504,7 @@ const days = [
   },
   {
     n: 3, zh: "領車・黑部峽谷鐵道賞楓（宇奈月→欅平）→ 移動長野", en: "Pick up car → Kurobe Gorge Railway (Unazuki-Keyakidaira) → move to Nagano side", country: "富山", flag: "🇯🇵",
+    date: "10/31（六）",
     spots: [
       { n: "★黑部峽谷鐵道（宇奈月→欅平，來回車票已電話預約）", type: "star", links: [{ t: "官網", u: "https://www.kurotetu.co.jp/", o: true }, { t: "📍 地圖", u: gmaps("黒部峡谷鉄道 宇奈月駅") }] },
       { n: "◎欅平（奧鐘橋・猿飛峡・人喰岩）", type: "dot", links: [{ t: "📍 地圖", u: gmaps("欅平駅") }] },
@@ -517,6 +521,7 @@ const days = [
   },
   {
     n: 4, zh: "地獄谷雪猴泡湯 → 戶隱高原", en: "Jigokudani snow monkeys → Togakushi highland", country: "長野", flag: "🇯🇵",
+    date: "11/1（日）",
     spots: [
       { n: "★地獄谷野猿公苑（野生獼猴泡溫泉）", type: "star", links: [{ t: "官網", u: "https://jigokudani-yaenkoen.co.jp/", o: true }, { t: "📍 地圖", u: gmaps("地獄谷野猿公苑") }] },
       { n: "★戶隱高原・鏡池（紅葉倒影經典拍照點）", type: "star", links: [{ t: "📍 地圖", u: gmaps("戸隠 鏡池") }] },
@@ -531,6 +536,7 @@ const days = [
   },
   {
     n: 5, zh: "善光寺・小布施 → 移動松本", en: "Zenkoji & Obuse → move to Matsumoto", country: "長野", flag: "🇯🇵",
+    date: "11/2（一）",
     spots: [
       { n: "★善光寺（信州第一名刹）", type: "star", links: [{ t: "📍 地圖", u: gmaps("善光寺") }] },
       { n: "★小布施（栗子甜點・北齋美術館的藝術小鎮）", type: "star", links: [{ t: "📍 地圖", u: gmaps("小布施") }] },
@@ -545,6 +551,7 @@ const days = [
   },
   {
     n: 6, zh: "松本城慢遊 → 安曇野", en: "Matsumoto Castle → Azumino", country: "長野", flag: "🇯🇵",
+    date: "11/3（二）",
     spots: [
       { n: "★松本城（現存天守，日本國寶）", type: "star", links: [{ t: "官網", u: "https://www.matsumoto-castle.jp/", o: true }, { t: "📍 地圖", u: gmaps("松本城") }] },
       { n: "◎城下町散步（縄手通り・中町通り）", type: "dot", links: [{ t: "📍 地圖", u: gmaps("縄手通り 松本") }] },
@@ -560,6 +567,7 @@ const days = [
   },
   {
     n: 7, zh: "上高地賞楓健行", en: "Kamikochi autumn hike", country: "長野", flag: "🇯🇵",
+    date: "11/4（三）",
     spots: [
       { n: "★大正池・田代濕原木道（穗高連峰倒影，最推薦段落）", type: "star", links: [{ t: "📍 地圖", u: gmaps("大正池") }] },
       { n: "★河童橋（上高地地標）", type: "star", links: [{ t: "📍 地圖", u: gmaps("河童橋") }] },
@@ -578,6 +586,7 @@ const days = [
   },
   {
     n: 8, zh: "平湯溫泉 → 返回富山搭機", en: "Hirayu Onsen → Toyama → depart", country: "返程", flag: "🇯🇵→🇹🇼",
+    date: "11/5（四）",
     spots: [],
     mapSpots: [
       { name: "平湯溫泉", lat: 36.1978, lon: 137.5766 },
@@ -787,7 +796,7 @@ function render() {
 
     return `<div class="day-card">
       <div class="day-header" onclick="tog(${i})">
-        <span class="day-num">Day ${d.n}</span>
+        <span class="day-num">Day ${d.n}${d.date ? `<div class="day-num-date">${d.date}</div>` : ''}</span>
         <span class="flag">${d.flag}</span>
         <div class="day-title-wrap">
           <div class="day-zh">${d.zh}</div>
