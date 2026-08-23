@@ -28,6 +28,8 @@
     --star: #8a3220;
     --onsen-bg: #e8f2f6;
     --onsen: #1a5c7a;
+    --sky: #3d6e8c;
+    --sky-light: #eaf1f4;
     --radius: 12px;
     --radius-sm: 8px;
   }
@@ -248,6 +250,17 @@
   .tip-list { display: flex; flex-direction: column; gap: 6px; margin-top: 8px; }
   .tip-item { display: flex; gap: 8px; font-size: 12px; color: var(--muted); line-height: 1.6; }
   .tip-item b { color: var(--text); }
+  .climate-row { display: flex; align-items: center; justify-content: space-between; gap: 10px; padding: 10px 0; border-bottom: 1px solid #f0ede8; }
+  .climate-row:last-child { border-bottom: none; }
+  .climate-name { font-size: 13px; font-weight: 500; color: var(--text); }
+  .climate-elev { font-size: 10px; color: var(--hint); margin-left: 6px; font-weight: 400; }
+  .climate-temp { font-size: 12px; color: var(--muted); margin-top: 3px; line-height: 1.5; }
+  .climate-temp b { color: var(--sky); font-weight: 600; }
+  .windy-btn {
+    flex-shrink: 0; background: var(--sky-light); color: var(--sky); border: 1px solid var(--sky);
+    border-radius: 20px; font-size: 11px; padding: 6px 12px; text-decoration: none; white-space: nowrap;
+  }
+  .windy-btn:hover { background: var(--sky); color: #fff; }
 </style>
 </head>
 <body>
@@ -330,6 +343,72 @@
         <div class="tip-item">🏔 <span>安房峠道路（上高地往平湯方向）11月初山區<b>偶有早雪</b>，上路前先查詢當日路況與胎況建議</span></div>
         <div class="tip-item">🛡 <span>租車保險的自負額 excess 建議加保降低，山路彎多，事故處理起來比較安心</span></div>
         <div class="tip-item">📡 <span>富山到長野之間穿越多個山區隧道，<b>手機導航偶爾會斷訊</b>，建議先截圖或下載離線地圖備用</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- 歷年氣溫參考・Windy預報 -->
+<div class="info-card">
+  <div class="inner">
+    <div class="info-head" style="background:var(--sky)" onclick="var b=document.getElementById('climb');var c=document.getElementById('climc');b.classList.toggle('open');c.style.transform=b.classList.contains('open')?'rotate(90deg)':''">
+      <div>
+        <div class="info-head-title">🌡️ 歷年氣溫參考・Windy 即時預報</div>
+        <div class="info-head-sub">富山市區到立山室堂海拔差近2450m，同一天山下山上溫差可達15°C以上</div>
+      </div>
+      <span class="info-chevron" id="climc">▶</span>
+    </div>
+    <div class="info-body" id="climb">
+      <div style="font-size:12px;color:var(--muted);line-height:1.7;margin-bottom:10px">
+        下列為各景點<b style="color:var(--text)">近十年同期歷史平均氣溫</b>（氣象局氣候值，僅供打包穿搭參考，非精確預報），點右側按鈕可開 <b style="color:var(--text)">Windy</b> 查該地點即時預報與風向。海拔越高的點（立山室堂、上高地、竜王山頂）10月底11月初已逼近冰點，務必準備防風保暖外套、手套。
+      </div>
+      <div class="climate-row">
+        <div><div class="climate-name">Day1・富山市區<span class="climate-elev">約10m</span></div><div class="climate-temp">10/29前後　高 <b>18°C</b> ／ 低 <b>11°C</b></div></div>
+        <a class="windy-btn" href="https://www.windy.com/36.695/137.214?temp,36.695,137.214,9" target="_blank">🌬 Windy ↗</a>
+      </div>
+      <div class="climate-row">
+        <div><div class="climate-name">Day2・立山室堂・大觀峰<span class="climate-elev">約2400m</span></div><div class="climate-temp">10/30前後　高 <b>3°C</b> ／ 低 <b>-3°C</b>・已進入初雪季，山頂步道可能結冰</div></div>
+        <a class="windy-btn" href="https://www.windy.com/36.569/137.619?temp,36.569,137.619,9" target="_blank">🌬 Windy ↗</a>
+      </div>
+      <div class="climate-row">
+        <div><div class="climate-name">Day3・宇奈月溫泉<span class="climate-elev">約120m</span></div><div class="climate-temp">10/31前後　高 <b>17°C</b> ／ 低 <b>9°C</b>・小火車無窗車廂體感更冷</div></div>
+        <a class="windy-btn" href="https://www.windy.com/36.776/137.621?temp,36.776,137.621,9" target="_blank">🌬 Windy ↗</a>
+      </div>
+      <div class="climate-row">
+        <div><div class="climate-name">Day4・戶隱高原<span class="climate-elev">約1200m</span></div><div class="climate-temp">11/1前後　高 <b>11°C</b> ／ 低 <b>1°C</b></div></div>
+        <a class="windy-btn" href="https://www.windy.com/36.733/138.106?temp,36.733,138.106,9" target="_blank">🌬 Windy ↗</a>
+      </div>
+      <div class="climate-row">
+        <div><div class="climate-name">Day4・善光寺・長野市區<span class="climate-elev">約370m</span></div><div class="climate-temp">11/1前後　高 <b>15°C</b> ／ 低 <b>5°C</b></div></div>
+        <a class="windy-btn" href="https://www.windy.com/36.661/138.186?temp,36.661,138.186,9" target="_blank">🌬 Windy ↗</a>
+      </div>
+      <div class="climate-row">
+        <div><div class="climate-name">Day4・竜王山頂 SORA terrace<span class="climate-elev">約1770m</span></div><div class="climate-temp">11/1傍晚　高 <b>8°C</b> ／ 低 <b>0°C</b>・纜車山頂風大，體感更低</div></div>
+        <a class="windy-btn" href="https://www.windy.com/36.714/138.451?temp,36.714,138.451,9" target="_blank">🌬 Windy ↗</a>
+      </div>
+      <div class="climate-row">
+        <div><div class="climate-name">Day5・小布施<span class="climate-elev">約370m</span></div><div class="climate-temp">11/2前後　高 <b>15°C</b> ／ 低 <b>4°C</b></div></div>
+        <a class="windy-btn" href="https://www.windy.com/36.683/138.306?temp,36.683,138.306,9" target="_blank">🌬 Windy ↗</a>
+      </div>
+      <div class="climate-row">
+        <div><div class="climate-name">Day6・松本市區<span class="climate-elev">約590m</span></div><div class="climate-temp">11/3前後　高 <b>15°C</b> ／ 低 <b>3°C</b>・盆地地形日夜溫差大</div></div>
+        <a class="windy-btn" href="https://www.windy.com/36.239/137.968?temp,36.239,137.968,9" target="_blank">🌬 Windy ↗</a>
+      </div>
+      <div class="climate-row">
+        <div><div class="climate-name">Day6・奈良井宿<span class="climate-elev">約940m</span></div><div class="climate-temp">11/3前後　高 <b>12°C</b> ／ 低 <b>1°C</b></div></div>
+        <a class="windy-btn" href="https://www.windy.com/35.919/137.778?temp,35.919,137.778,9" target="_blank">🌬 Windy ↗</a>
+      </div>
+      <div class="climate-row">
+        <div><div class="climate-name">Day6・奧飛驒溫泉鄉<span class="climate-elev">約1260m</span></div><div class="climate-temp">11/3前後　高 <b>10°C</b> ／ 低 <b>-1°C</b></div></div>
+        <a class="windy-btn" href="https://www.windy.com/36.198/137.577?temp,36.198,137.577,9" target="_blank">🌬 Windy ↗</a>
+      </div>
+      <div class="climate-row">
+        <div><div class="climate-name">Day7・上高地・河童橋<span class="climate-elev">約1500m</span></div><div class="climate-temp">11/4前後　高 <b>8°C</b> ／ 低 <b>-2°C</b>・清晨木道易結霜濕滑</div></div>
+        <a class="windy-btn" href="https://www.windy.com/36.250/137.636?temp,36.250,137.636,9" target="_blank">🌬 Windy ↗</a>
+      </div>
+      <div class="climate-row">
+        <div><div class="climate-name">Day8・高岡市<span class="climate-elev">約6m</span></div><div class="climate-temp">11/5前後　高 <b>16°C</b> ／ 低 <b>8°C</b></div></div>
+        <a class="windy-btn" href="https://www.windy.com/36.741/137.008?temp,36.741,137.008,9" target="_blank">🌬 Windy ↗</a>
       </div>
     </div>
   </div>
