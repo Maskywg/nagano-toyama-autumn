@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>富山進富山出 紅葉雪猴八日自駕</title>
+<title>富山進富山出 紅葉八日自駕</title>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🍁</text></svg>">
 <meta name="theme-color" content="#8a3220">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
@@ -253,14 +253,14 @@
 <body>
 
 <header>
-  <h1>富山・長野 紅葉雪猴八日自駕</h1>
-  <p>立山黑部纜車賞楓・黑部峽谷鐵道・地獄谷雪猴泡湯・戶隱高原・上高地木道健行・富山進富山出</p>
+  <h1>富山・長野 紅葉八日自駕</h1>
+  <p>立山黑部纜車賞楓・黑部峽谷鐵道・善光寺小布施北齋館・松本城安曇野奈良井宿・上高地木道健行・富山進富山出</p>
 </header>
 
 <div class="legend">
   <div class="legend-item"><span class="badge star">★ 必訪</span> 重點景點</div>
   <div class="legend-item"><span class="badge dot">◎ 參觀</span> 順路 / 沿途風光</div>
-  <div class="legend-item"><span class="badge onsen">♨ 溫泉</span> 泡湯 / 雪猴相關</div>
+  <div class="legend-item"><span class="badge onsen">♨ 溫泉</span> 泡湯相關</div>
   <div class="legend-item" style="border-left:1px solid #e2ddd6;padding-left:12px;color:var(--lake)">🚗 全程自駕，非跟團行程</div>
 </div>
 
@@ -520,23 +520,8 @@ const days = [
     carEvent: { type: "pickup", label: "🚗 富山駅前取車", location: "富山駅前租車門市", note: "Day2搭電車去立山黑部不用租車，車子這天才開始租，取車後全程自駕到 Day 8 還車，中間上高地那天車子一樣要停在管制區外" }
   },
   {
-    n: 4, zh: "戶隱高原 → 竜王SORA terrace看雲海", en: "Togakushi highland → SORA terrace unkai at sunset", country: "長野", flag: "🇯🇵",
+    n: 4, zh: "善光寺・小布施・北齋館", en: "Zenkoji, Obuse & Hokusai Museum", country: "長野", flag: "🇯🇵",
     date: "11/1（日）",
-    spots: [
-      { n: "★戶隱高原・鏡池（紅葉倒影經典拍照點）", type: "star", links: [{ t: "📍 地圖", u: gmaps("戸隠 鏡池") }] },
-      { n: "★竜王マウンテンリゾート SORA terrace（傍晚雲海・夕陽）", type: "star", links: [{ t: "官網", u: "https://ryuoo.com/green/sora_terrace/", o: true }, { t: "📍 地圖", u: gmaps("竜王マウンテンリゾート SORA terrace") }] },
-    ],
-    mapSpots: [
-      { name: "戶隱鏡池", lat: 36.7332, lon: 138.1057 },
-      { name: "竜王マウンテンリゾート", lat: 36.7139, lon: 138.4506 },
-    ],
-    food: "戶隱是信州三大蕎麥產地之一，戶隱そば值得專程一試；SORA terrace山頂有咖啡廳（cafe營業到18:30 L.O.）",
-    hotel: "長野市區（連住兩晚）",
-    note: "已取消地獄谷雪猴行程，改成戶隱＋竜王雲海的組合。上午開車約1小時到戶隱，鏡池步道平緩好走；下午開車約40分鐘-1小時到竜王マウンテンリゾート，纜車上山到SORA terrace（海拔1770m）。<b>官方主打傍晚是雲海最佳時機</b>（夕陽×雲海是這裡的特色，跟大部分雲海景點主打清晨不同），纜車營業到19:00、山頂cafe到18:30。雲海全季平均遭遇率約6成，看夕方時段機率更高，但仍要看天氣，出發前先查官網雲海預報。看完雲海後開車回長野市（約40分鐘-1小時），這天會比較晚回到市區，抓一下時間別太晚吃晚餐",
-  },
-  {
-    n: 5, zh: "善光寺・小布施 → 移動松本", en: "Zenkoji & Obuse → move to Matsumoto", country: "長野", flag: "🇯🇵",
-    date: "11/2（一）",
     spots: [
       { n: "★善光寺（信州第一名刹）", type: "star", links: [{ t: "📍 地圖", u: gmaps("善光寺") }] },
       { n: "★小布施（栗子甜點的藝術小鎮）", type: "star", links: [{ t: "📍 地圖", u: gmaps("小布施") }] },
@@ -547,29 +532,30 @@ const days = [
       { name: "小布施", lat: 36.6825, lon: 138.3055 },
       { name: "北齋館", lat: 36.694277, lon: 138.31722 },
     ],
-    food: "信州蕎麥麵、烤餡餅（おやき）是長野招牌；小布施的栗子羊羹、蒙布朗也不能錯過",
-    hotel: "松本市區（連住兩晚）",
-    note: "善光寺參道早上人潮較少，小布施適合安排午後慢慢逛，北齋館就在小布施街區內、走路可到，可以留半小時到1小時參觀，再開車約1.5小時到松本"
+    food: "信州蕎麥麵、烤餡餅（おやき）是長野招牌；小布施的栗子羊羹、蒙布朗也不能錯過，小布施堂、竹風堂都有附設咖啡廳",
+    hotel: "長野市區（連住兩晚，取消原本的戶隱/SORA terrace安排）",
+    note: "已改回善光寺+小布施+北齋館的組合（原本考慮的戶隱＋竜王SORA terrace雲海這次不排了）。善光寺參道早上人潮較少，接著開車約30-40分鐘到小布施，北齋館就在小布施街區內、走路可到，栗の小径、小布施堂/竹風堂都在附近，留半天慢慢逛，傍晚回長野市住宿"
   },
   {
-    n: 6, zh: "松本城慢遊 → 安曇野", en: "Matsumoto Castle → Azumino", country: "長野", flag: "🇯🇵",
-    date: "11/3（二）",
+    n: 5, zh: "松本城・安曇野・奈良井宿 → 移動松本", en: "Matsumoto Castle, Azumino & Narai-juku", country: "長野", flag: "🇯🇵",
+    date: "11/2（一）",
     spots: [
       { n: "★松本城（現存天守，日本國寶）", type: "star", links: [{ t: "官網", u: "https://www.matsumoto-castle.jp/", o: true }, { t: "📍 地圖", u: gmaps("松本城") }] },
-      { n: "◎城下町散步（縄手通り・中町通り）", type: "dot", links: [{ t: "📍 地圖", u: gmaps("縄手通り 松本") }] },
       { n: "★大王わさび農場（山葵田景觀・山葵霜淇淋）", type: "star", links: [{ t: "官網", u: "https://www.daiowasabi.co.jp/", o: true }, { t: "📍 地圖", u: gmaps("大王わさび農場") }] },
+      { n: "★奈良井宿（中山道保存最完整的宿場町）", type: "star", links: [{ t: "📍 地圖", u: gmaps("奈良井宿") }] },
     ],
     mapSpots: [
       { name: "松本城", lat: 36.2385, lon: 137.9683 },
       { name: "大王わさび農場", lat: 36.3283, lon: 137.8879 },
+      { name: "奈良井宿", lat: 35.9186, lon: 137.7776 },
     ],
-    food: "城下町裡老蕎麥麵店、咖啡老屋很多，馬肉料理也是松本在地特色；大王わさび農場現摘現吃的山葵霜淇淋、山葵可樂餅是必吃",
-    hotel: "松本市區（連住，隔天上高地當天來回）",
-    note: "不爬陡梯的減法慢遊路線，天守內部階梯較陡，體力有限可以只在外觀護城河邊散步拍照。下午開車約20-30分鐘到安曇野，大王わさび農場腹地大、可以搭遊覽船逛山葵田，晚上開回松本住，不用多換一晚住宿"
+    food: "城下町裡老蕎麥麵店、咖啡老屋很多，馬肉料理也是松本在地特色；大王わさび農場現摘現吃的山葵霜淇淋、山葵可樂餅是必吃；奈良井宿老街也有不少小吃攤",
+    hotel: "松本市區",
+    note: "從長野市開車約1.5小時到松本，一早先松本城（不爬陡梯的減法慢遊路線），接著開車約20-30分鐘到安曇野走大王わさび農場，再開車約30-40分鐘到奈良井宿老街散步。三個點排同一天比較緊湊，體力有限可以三選二，優先留松本城"
   },
   {
-    n: 7, zh: "上高地賞楓健行", en: "Kamikochi autumn hike", country: "長野", flag: "🇯🇵",
-    date: "11/4（三）",
+    n: 6, zh: "上高地賞楓健行 → 移動奧飛驒", en: "Kamikochi hike → move to Okuhida", country: "長野", flag: "🇯🇵",
+    date: "11/3（二）",
     spots: [
       { n: "★大正池・田代濕原木道（穗高連峰倒影，最推薦段落）", type: "star", links: [{ t: "📍 地圖", u: gmaps("大正池") }] },
       { n: "★河童橋（上高地地標）", type: "star", links: [{ t: "📍 地圖", u: gmaps("河童橋") }] },
@@ -582,25 +568,43 @@ const days = [
       { name: "明神池", lat: 36.2557, lon: 137.6516 },
     ],
     food: "河童橋周邊有山屋餐廳和輕食攤，建議早點出發避開接駁巴士排隊人潮",
-    hotel: "平湯溫泉（順路移動，縮短隔天回富山的車程）",
-    note: "私家車開不進上高地，車直接停到あかんだな駐車場（在平湯溫泉附近），轉接駁巴士入園約25分鐘。建議先搭到大正池站，沿木道走到河童橋（約80分鐘、全程平坦），有餘力再往明神池方向延伸",
+    hotel: "奧飛驒溫泉鄉（平湯溫泉一帶，這天換住宿地點）",
+    note: "私家車開不進上高地，車直接停到あかんだな駐車場，轉接駁巴士入園約25分鐘。建議先搭到大正池站，沿木道走到河童橋（約80分鐘、全程平坦），有餘力再往明神池方向延伸。結束後開車約30-40分鐘到奧飛驒溫泉鄉過夜",
     trailMap: true
   },
   {
-    n: 8, zh: "平湯溫泉 → 返回富山搭機", en: "Hirayu Onsen → Toyama → depart", country: "返程", flag: "🇯🇵→🇹🇼",
-    date: "11/5（四）",
-    spots: [],
+    n: 7, zh: "奧飛驒 → 開車回富山（經高岡）→ 傍晚還車", en: "Okuhida → drive to Toyama via Takaoka → return car", country: "富山", flag: "🇯🇵",
+    date: "11/4（三）",
+    spots: [
+      { n: "◎新穗高纜車 / 平湯大滝（早上悠閒選一個）", type: "dot", links: [{ t: "📍 地圖", u: gmaps("新穂高ロープウェイ") }] },
+      { n: "★高岡市 藤子・F・不二雄ふるさとギャラリー（高岡市美術館內）", type: "star", links: [{ t: "官網", u: "https://fujiko-artgallery.jp/", o: true }, { t: "📍 地圖", u: gmaps("高岡市藤子・F・不二雄ふるさとギャラリー") }] },
+    ],
     mapSpots: [
-      { name: "平湯溫泉", lat: 36.1978, lon: 137.5766 },
+      { name: "奧飛驒溫泉鄉", lat: 36.1978, lon: 137.5766 },
+      { name: "高岡市美術館", lat: 36.7409, lon: 137.0082 },
+      { name: "富山市區", lat: 36.6953, lon: 137.2138 },
+    ],
+    food: "路上經過富山市區可以順道吃碗白蝦丼、買鱒魚壽司當紀念",
+    hotel: "富山市區",
+    note: "早上在奧飛驒悠閒一下（新穗高纜車看北阿爾卑斯，或平湯大滝散步），開車經安房峠道路→中部縱貫道回富山方向（約1.5-2小時），順路繞去高岡（車程再加約30-40分鐘）逛藤子・F・不二雄故郷藝廊（9:30-17:00，16:30最後入場，週一休館但11/4是週三不受影響），逛完開車到富山空港還車。這天不用趕飛機，車還完當晚住富山市區，比較從容",
+    carEvent: { type: "dropoff", label: "🚗 富山空港還車", location: "富山空港租車櫃檯", note: "這天先還車，隔天Day8不用開車，輕鬆度過最後一天再搭機" }
+  },
+  {
+    n: 8, zh: "富山市區 → 搭機離開", en: "Toyama city → depart", country: "返程", flag: "🇯🇵→🇹🇼",
+    date: "11/5（四）",
+    spots: [
+      { n: "◎富岩運河環水公園（Day1傍晚沒空逛，這天補回來）", type: "dot", links: [{ t: "📍 地圖", u: gmaps("富岩運河環水公園") }] },
+    ],
+    mapSpots: [
+      { name: "富山市區", lat: 36.6953, lon: 137.2138 },
       { name: "富山空港", lat: 36.6483, lon: 137.1876 },
     ],
     food: "回程路上可以在富山市區找點時間吃碗白蝦丼或鱒魚壽司當最後一餐",
     hotel: "溫暖的家",
-    note: "走安房峠道路／中部縱貫道回富山，車程約1.5-2小時。回程班機18:35從富山起飛，國際線建議提前2小時報到，中午前從平湯溫泉出發最保險，路上還有餘裕在富山市區買伴手禮",
+    note: "車已經在Day7還了，這天沒有車、也不用趕，富岩運河環水公園（世界最美星巴克那個）走路或搭巴士都到得了。回程班機18:35從富山起飛，國際線建議提前2小時報到，記得留時間搭空港連絡巴士（富山駅前往空港約23分鐘）",
     flights: [
       { label: "回程", airline: "中華航空", no: "CI371", from: "富山 TOY", to: "台北 TPE", dep: "18:35", arr: "21:25", duration: "3h50m" },
     ],
-    carEvent: { type: "dropoff", label: "🚗 富山空港還車", location: "富山空港租車櫃檯", note: "還車後留意報到時間，確認當天實際航班日期與時刻" }
   },
 ];
 
@@ -612,16 +616,17 @@ const dayShoppingMap = {
     { name: "宇奈月溫泉饅頭・黑部名水商品", tag: "food", desc: "宇奈月溫泉街老舖溫泉饅頭，還有黑部名水製成的商品，車站周邊都買得到", links: [] },
   ],
   4: [
-    { name: "戶隱蕎麥麵", tag: "food", desc: "信州三大蕎麥之一，戶隱高原周邊蕎麥麵店可以買乾麵版本回家", links: [] },
-  ],
-  5: [
     { name: "信州味噌・七味唐辛子", tag: "food", desc: "善光寺仲見世通「八幡屋礒五郎」是七味的老字號名店", links: [] },
     { name: "小布施栗子甜點", tag: "food", desc: "栗蒸羊羹、蒙布朗是小布施最知名的伴手禮，老舖選擇多", links: [] },
   ],
-  6: [
+  5: [
     { name: "松本民藝家具・工藝品", tag: "souvenir", desc: "中町通り一帶老屋改建的工藝品店，木工與漆器選擇多", links: [] },
-    { name: "手打ち蕎麥乾麵", tag: "food", desc: "城下町蕎麥麵店多有販售乾麵伴手禮版本", links: [] },
     { name: "山葵相關製品", tag: "food", desc: "大王わさび農場出的山葵漬、山葵鹽是安曇野限定伴手禮", links: [] },
+    { name: "木曾漆器・お六櫛", tag: "souvenir", desc: "奈良井宿所在的木曾地區是漆器與木梳的老產地，老街上工藝品店不少", links: [] },
+  ],
+  7: [
+    { name: "さるぼぼ", tag: "souvenir", desc: "飛驒地區吉祥物猴寶寶，奧飛驒溫泉鄉周邊都買得到", links: [] },
+    { name: "高岡銅器・漆器", tag: "souvenir", desc: "高岡是日本傳統鑄物重鎮，金屋町一帶有不少銅器工藝品店", links: [] },
   ],
   8: [
     { name: "鱒魚壽司（ますのすし）", tag: "food", desc: "富山車站便當名物，壓製而成、可常溫保存，很適合當最後一餐或伴手禮", links: [] },
