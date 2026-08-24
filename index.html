@@ -676,7 +676,7 @@ const days = [
     ],
     food: "河童橋周邊有山屋餐廳和輕食攤，建議早點出發避開接駁巴士排隊人潮；回富山路上可以順道吃碗白蝦丼",
     hotel: "Hotel JAL City Toyama（已訂房，1晚高級雙床間頂樓）",
-    note: "私家車開不進上高地，車直接停到<b>あかんだな駐車場</b>——高山市營，就在奧飛驒平湯溫泉附近，從Day6住的奧飛驒溫泉鄉開過去很近，不用大老遠移動。停車場很大（普通車870個車位），11月初這個時節不太需要擔心停不到，停車費1日600円。轉乘上高地シャトルバス（30分鐘一班，車程約35分鐘，大人單程1,500円／來回2,800円，去程首班04:50・末班16:50從駐車場發車，回程末班17:30從上高地發車，記得抓時間別錯過最後一班）入園，<b>不用預約</b>，當天到駐車場管理棟內的自動售票機買票即可（車上不賣來回票，要在售票機先買好），建議直接買來回票比較方便；賞楓旺季人多時可能要排隊候車，早點到會比較從容。建議先搭到大正池站，沿木道走到河童橋（約80分鐘、全程平坦），有餘力再往明神池方向延伸。結束後開車回富山（約1.5-2小時），傍晚還車，當晚住富山市區，不用趕飛機",
+    note: "私家車開不進上高地，車直接停到<b>あかんだな駐車場</b>——高山市營，就在奧飛驒平湯溫泉附近，從Day6住的奧飛驒溫泉鄉開過去很近，不用大老遠移動。停車場很大（普通車870個車位），11月初這個時節不太需要擔心停不到，停車費1日600円。轉乘上高地シャトルバス（30分鐘一班，車程約35分鐘，大人單程1,500円／來回2,800円，去程首班04:50・末班16:50從駐車場發車，回程末班17:30從上高地發車，記得抓時間別錯過最後一班）入園，<b>不用預約</b>，當天到駐車場管理棟內的自動售票機買票即可（車上不賣來回票，要在售票機先買好），建議直接買來回票比較方便；賞楓旺季人多時可能要排隊候車，早點到會比較從容。建議先搭到大正池站，沿木道走到河童橋，實際分段時間是<b>大正池→田代池20分→田代橋20分→Weston碑10分→河童橋20分</b>，全程約70分鐘、平坦好走；田代橋那邊也有一條36分鐘的捷徑可以直接接到上高地巴士總站，不想走完全程的話可以從這裡收尾。有餘力再往明神池延伸：河童橋→明神池<b>左（南）岸路線約50分鐘、右（北）岸路線約60分鐘</b>，去左岸回右岸（或反過來）可以走成一圈不用走回頭路；體力更好、時間更多的話明神池再往德澤（1小時）、橫尾（再1小時10分）可以繼續深入，不過這天時間有限，抓到明神池就好，別為了衝更遠而錯過17:30最後一班接駁巴士。結束後開車回富山（約1.5-2小時），傍晚還車，當晚住富山市區，不用趕飛機",
     trailMap: true,
     carEvent: { type: "dropoff", label: "🚗 富山空港還車", location: "富山空港租車櫃檯", note: "這天先還車，隔天Day8不用開車，輕鬆度過最後一天再搭機" },
     reservationImgs: [
@@ -855,32 +855,40 @@ function render() {
     let trailMapHTML = '';
     if (d.trailMap) {
       trailMapHTML = `<div class="trail-map">
-        <svg viewBox="0 0 680 170" width="100%" role="img" aria-label="上高地健行路線圖：あかんだな駐車場、大正池、河童橋、明神池">
-          <line x1="75" y1="100" x2="270" y2="100" stroke="var(--hint)" stroke-width="2" stroke-linecap="round" stroke-dasharray="1 6"/>
-          <line x1="270" y1="100" x2="460" y2="100" stroke="var(--primary)" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="1 5"/>
-          <line x1="460" y1="100" x2="610" y2="100" stroke="var(--onsen)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="2 9" opacity="0.8"/>
+        <svg viewBox="0 0 680 190" width="100%" role="img" aria-label="上高地健行路線圖：あかんだな駐車場、大正池、田代池、田代橋、河童橋、明神池">
+          <line x1="45" y1="110" x2="135" y2="110" stroke="var(--hint)" stroke-width="2" stroke-linecap="round" stroke-dasharray="1 6"/>
+          <line x1="135" y1="110" x2="235" y2="110" stroke="var(--primary)" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 5"/>
+          <line x1="235" y1="110" x2="335" y2="110" stroke="var(--primary)" stroke-width="3" stroke-linecap="round" stroke-dasharray="1 5"/>
+          <line x1="335" y1="110" x2="465" y2="110" stroke="var(--primary)" stroke-width="3.5" stroke-linecap="round" stroke-dasharray="1 5"/>
+          <line x1="465" y1="110" x2="620" y2="110" stroke="var(--onsen)" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="2 9" opacity="0.8"/>
 
-          <circle cx="75" cy="100" r="9" fill="var(--lake)" stroke="white" stroke-width="2"/>
-          <text x="75" y="75" text-anchor="middle" font-size="11" fill="var(--text)">あかんだな</text>
-          <text x="75" y="88" text-anchor="middle" font-size="11" fill="var(--text)">駐車場</text>
+          <circle cx="45" cy="110" r="8" fill="var(--lake)" stroke="white" stroke-width="2"/>
+          <text x="45" y="85" text-anchor="middle" font-size="10" fill="var(--text)">あかんだな</text>
+          <text x="45" y="97" text-anchor="middle" font-size="10" fill="var(--text)">駐車場</text>
 
-          <circle cx="270" cy="100" r="9" fill="var(--primary-mid)" stroke="white" stroke-width="2"/>
-          <text x="270" y="80" text-anchor="middle" font-size="13" fill="var(--text)">大正池</text>
+          <circle cx="135" cy="110" r="8" fill="var(--primary-mid)" stroke="white" stroke-width="2"/>
+          <text x="135" y="90" text-anchor="middle" font-size="12" fill="var(--text)">大正池</text>
 
-          <circle cx="460" cy="100" r="11" fill="var(--primary)" stroke="white" stroke-width="2"/>
-          <text x="460" y="78" text-anchor="middle" font-size="14" font-weight="600" fill="var(--primary)">★河童橋</text>
+          <circle cx="235" cy="110" r="7" fill="var(--primary-mid)" stroke="white" stroke-width="2"/>
+          <text x="235" y="90" text-anchor="middle" font-size="12" fill="var(--text)">田代池</text>
 
-          <circle cx="610" cy="100" r="8" fill="var(--onsen)" stroke="white" stroke-width="2"/>
-          <text x="610" y="78" text-anchor="middle" font-size="11" fill="var(--muted)">明神池</text>
+          <circle cx="335" cy="110" r="7" fill="var(--primary-mid)" stroke="white" stroke-width="2"/>
+          <text x="335" y="90" text-anchor="middle" font-size="12" fill="var(--text)">田代橋</text>
+          <text x="335" y="147" text-anchor="middle" font-size="9" fill="var(--muted)">經Weston碑</text>
 
-          <text x="172" y="123" text-anchor="middle" font-size="10" fill="var(--muted)">接駁巴士</text>
-          <text x="172" y="136" text-anchor="middle" font-size="10" fill="var(--muted)">約25分</text>
+          <circle cx="465" cy="110" r="11" fill="var(--primary)" stroke="white" stroke-width="2"/>
+          <text x="465" y="88" text-anchor="middle" font-size="14" font-weight="600" fill="var(--primary)">★河童橋</text>
 
-          <text x="365" y="123" text-anchor="middle" font-size="10" fill="var(--muted)">木道 約4km</text>
-          <text x="365" y="136" text-anchor="middle" font-size="10" fill="var(--muted)">約80分・全程平坦</text>
+          <circle cx="620" cy="110" r="8" fill="var(--onsen)" stroke="white" stroke-width="2"/>
+          <text x="620" y="88" text-anchor="middle" font-size="11" fill="var(--muted)">明神池</text>
 
-          <text x="535" y="123" text-anchor="middle" font-size="10" fill="var(--muted)">右岸步道 約3km</text>
-          <text x="535" y="136" text-anchor="middle" font-size="10" fill="var(--muted)">約60分・延伸路段</text>
+          <text x="90" y="133" text-anchor="middle" font-size="10" fill="var(--muted)">接駁巴士約35分</text>
+          <text x="185" y="133" text-anchor="middle" font-size="10" fill="var(--muted)">木道20分</text>
+          <text x="285" y="133" text-anchor="middle" font-size="10" fill="var(--muted)">木道20分</text>
+          <text x="400" y="133" text-anchor="middle" font-size="10" fill="var(--muted)">10分＋20分</text>
+          <text x="542" y="133" text-anchor="middle" font-size="10" fill="var(--muted)">左岸50分／右岸60分</text>
+
+          <text x="335" y="165" text-anchor="middle" font-size="9" fill="var(--hint)">（田代橋另有36分捷徑可直接到上高地巴士總站）</text>
         </svg>
         <div class="trail-map-caption">大正池→河童橋全程平坦好走是重點路段，河童橋→明神池是體力足夠者的延伸選項</div>
       </div>`;
