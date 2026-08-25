@@ -228,6 +228,21 @@
   .flight-dur { font-size: 11px; color: var(--muted); background: var(--bg); padding: 2px 7px; border-radius: 10px; }
   .flight-label { font-size: 10px; background: var(--primary); color: white; padding: 2px 6px; border-radius: 4px; white-space: nowrap; }
 
+  /* 詳細搭車時刻表 */
+  .timeline-section { margin-top: 12px; border: 1px solid var(--primary-mid); border-radius: var(--radius-sm); overflow: hidden; }
+  .timeline-header {
+    background: var(--primary); color: white; font-size: 11px; font-weight: 500; padding: 6px 12px;
+    letter-spacing: 0.05em; display: flex; align-items: center; gap: 6px;
+  }
+  .timeline-table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  .timeline-table td { padding: 6px 12px; color: var(--text); border-bottom: 1px solid #f0f4f0; vertical-align: middle; }
+  .timeline-table tr:last-child td { border-bottom: none; }
+  .timeline-time { font-size: 13px; font-weight: 600; color: var(--primary); letter-spacing: 0.02em; white-space: nowrap; }
+  .timeline-mode { font-size: 10px; color: white; background: var(--lake); padding: 1px 7px; border-radius: 9px; white-space: nowrap; }
+  .timeline-table tr.tl-key td { background: var(--primary-light); }
+  .timeline-table tr.tl-key .timeline-stop { font-weight: 600; }
+  .timeline-table tr.tl-stay td { background: var(--onsen-bg); color: var(--onsen); font-weight: 500; text-align: center; }
+
   /* 租車取還車區塊 */
   .car-section {
     margin-top: 12px; border: 1px solid #cfe0e8; border-radius: var(--radius-sm); overflow: hidden; background: var(--lake-light);
@@ -586,7 +601,36 @@ const days = [
     reservationImgs: [
       { src: "./assets/tateyama-kurobe-timetable-outbound.png", caption: "官方去程時刻表（電鉄富山⇒立山駅⇒室堂⇒黒部湖，2026/4/15-11/3適用版）" },
       { src: "./assets/tateyama-kurobe-timetable-return.png", caption: "官方回程時刻表（黒部湖⇒室堂⇒立山駅⇒電鉄富山方向，2026/4/15-11/3適用版）" },
-    ]
+    ],
+    timeline: {
+      title: "黑部湖90分鐘＋みくりが池60分鐘 完整搭車時刻",
+      rows: [
+        { time: "09:40", stop: "立山駅出發", mode: "纜車" },
+        { time: "09:47", stop: "美女平到", mode: "" },
+        { time: "10:20", stop: "美女平出發", mode: "高原巴士" },
+        { time: "11:10", stop: "室堂到（不下車）", mode: "" },
+        { time: "11:15", stop: "室堂出發", mode: "電氣巴士" },
+        { time: "11:25", stop: "大觀峰到", mode: "" },
+        { time: "11:30", stop: "大觀峰出發", mode: "纜索道" },
+        { time: "11:37", stop: "黑部平到", mode: "" },
+        { time: "12:00", stop: "黑部平出發", mode: "纜車" },
+        { time: "12:05", stop: "黑部湖到", mode: "", key: true },
+        { time: "12:05-13:35", stop: "黑部湖停留 90 分鐘", stay: true },
+        { time: "13:40", stop: "黑部湖出發", mode: "纜車" },
+        { time: "13:45", stop: "黑部平到", mode: "" },
+        { time: "14:00", stop: "黑部平出發", mode: "纜索道" },
+        { time: "14:07", stop: "大觀峰到", mode: "" },
+        { time: "14:15", stop: "大觀峰出發", mode: "電氣巴士" },
+        { time: "14:25", stop: "室堂到", mode: "", key: true },
+        { time: "14:25-15:25", stop: "みくりが池 60 分鐘", stay: true },
+        { time: "15:40", stop: "室堂出發", mode: "高原巴士" },
+        { time: "16:30", stop: "美女平到", mode: "" },
+        { time: "16:40", stop: "美女平出發", mode: "纜車" },
+        { time: "16:47", stop: "立山駅到", mode: "" },
+        { time: "17:05", stop: "立山駅出發", mode: "電車" },
+        { time: "17:58", stop: "電鉄富山到", mode: "", key: true },
+      ]
+    }
   },
   {
     n: 3, zh: "領車・黑部峽谷鐵道賞楓（宇奈月→欅平）→ 夜宿白馬村", en: "Pick up car → Kurobe Gorge Railway (Unazuki-Keyakidaira) → overnight in Hakuba", country: "富山", flag: "🇯🇵",
@@ -925,6 +969,24 @@ function render() {
       </div>`;
     }
 
+    let timelineHTML = '';
+    if (d.timeline && d.timeline.rows && d.timeline.rows.length) {
+      const trows = d.timeline.rows.map(r => {
+        if (r.stay) {
+          return `<tr class="tl-stay"><td colspan="3">⏸ ${r.stop}（${r.time}）</td></tr>`;
+        }
+        return `<tr class="${r.key ? 'tl-key' : ''}">
+          <td class="timeline-time">${r.time}</td>
+          <td class="timeline-stop">${r.stop}</td>
+          <td>${r.mode ? `<span class="timeline-mode">${r.mode}</span>` : ''}</td>
+        </tr>`;
+      }).join('');
+      timelineHTML = `<div class="timeline-section">
+        <div class="timeline-header">🕐 ${d.timeline.title}</div>
+        <table class="timeline-table"><tbody>${trows}</tbody></table>
+      </div>`;
+    }
+
     return `<div class="day-card">
       <div class="day-header" onclick="tog(${i})">
         <span class="day-num">Day ${d.n}${d.date ? `<div class="day-num-date">${d.date}</div>` : ''}</span>
@@ -943,6 +1005,7 @@ function render() {
         ${trailMapHTML}
         ${carHTML}
         ${flightHTML}
+        ${timelineHTML}
         <div class="section">
           <div class="section-label">餐食建議</div>
           <div class="self-food-text">${d.food}</div>
